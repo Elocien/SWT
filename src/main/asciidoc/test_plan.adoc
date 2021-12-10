@@ -1,0 +1,391 @@
+= Test-Plan
+
+Dieser Testplan stellt eine vereinfachte Version der IEEE 829-1998 Vorlage dar.
+
+== Einführung
+Dieses Dokument bietet einer Übersicht aller bisher geplanten Tests der __tourable__-Software. Dabei dient dieses Dokument vorrangig als konzeptuelle Planung der zu implementierenden Tests, da die genaue Testplanung (konkrete Datenverarbeitung, Methodennutzung) in der aktuellen Entwicklungsphase noch nicht möglich ist.
+
+== Aufbau der Testbezeichner
+Die Tests werden mit folgenden Bezeichnern benannt:
+
+* Unittests bekommen den Präfix __U__, Integrationstests den Präfix __I__
+* daraufhin folgt ein Klassifikator, bestehend aus 3 Großbuchstaben, der den zugehörigen Anwendungsbereich markiert, z.B
+** __TRV__: Reiseführer (Travelguides)
+** __ACM__: Unterkünfte (Accommodations)
+** __USR__: Benutzerverwaltung (Users)
+* daraufhin folgt eine 3-stellige Test-Id, die im jeweiligen Anwendungsbereich eindeutig ist
+
+Beispiel Testbezeichner:
+
+* I-ACM-002
+* U-TRV-011
+* U-USR-036
+
+== Test Gegenstände
+
+== Zu testende Funktionalitäten
+
+* Datenstrukturen
+* Datenbankabfragen (CRUD)
+* Sortier- und Filtermöglichkeiten der einzelnen Komponenten
+* Datendarstellung im Frontend
+
+== Nicht zu testende Funktionalitäten
+
+* 3rd-Party-Bibliotheken (ausgenommen der Schnittstellen)
+** Spring
+** Salespoint
+
+== Herangehensweise
+
+* Klassen werden mit JUnit getestet
+* Werden Klassen zu Modulen zusammengefasst, so werden Modulfunktionalitäten mittels Integrationstest realisiert (Bottom-Up-Prinzip)
+
+== Umgebungsvoraussetzungen
+* Rechner, der den Anforderungen von Java 11 genügt
+* funktionsfähige, laufende __tourable__-Software
+
+== Testfälle und Verantwortlichkeit
+Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
+
+[options="header", cols="1,3,3,3,3"]
+|===
+|ID
+|Anwendungsfall
+|Vorbedingungen
+|Eingabe
+|Ausgabe
+
+|U-TRV-001
+|Test der `getter` von Travelguide
+|--
+|Erstellung eines neuen Travelguide
+|`getter` gibt die korrekten Werte zurück
+
+|U-TRV-002
+|Test der `setter` von Travelguide
+|--
+|Erstellung eines neuen Travelguide, aktualisieren von Attributen über `setter`
+|`getter` gibt die korrekten Werte zurück
+
+|U-TRV-003
+|Test der `getter` von TravelguideDataForm
+|--
+|Erstellung eines neuen TravelguideDataForm
+|`getter` gibt die korrekten Werte zurück
+
+|U-TRV-004
+|Test der Konstruktorargumente von TravelguideManagement
+|--
+|Erstellung eines neuen TravelguideManagement, Übergabe von `null`
+|NPE
+
+|U-TRV-005
+|Test von `createTravelguide()` in TravelguideManagement
+|--
+|Erstellung eines neuen TravelguideDataForm, Aufrufen von `createTravelguide()`
+|Im Repository ist ein neuer Travelguide mit den korrekten Attributen gespeichert
+
+|U-TRV-006
+|Test von `updateTravelguide()` in TravelguideManagement
+|Es ist ein Travelguide in der Datenbank
+|Erstellung eines neuen TravelguideDataForm, Aufrufen von `updateTravelguide()` mit id
+|Im Repository werden die Attribute des entsprechenden Travelguides aktualisiert
+
+|U-TRV-007
+|Test von `deleteTravelguide()` in TravelguideManagement
+|Es ist ein Travelguide in der Datenbank
+|Aufrufen von `deleteTravelguide()` mit id
+|Der entsprechende Travelguide wird aus dem Repository gelöscht
+
+|U-TRV-008
+|Test von `buyTravelguide()` in TravelguideManagement
+|Es ist ein Travelguide in der Datenbank
+|Aufrufen von `buyTravelguide()` mit id
+|Im InvoiceRepository wird eine entsprechende Rechnung mit Preis des Reiseführers gespeichert
+
+|U-TRV-009
+|Test von `findAll()` in TravelguideManagement
+|Es sind Travelguides in der Datenbank
+|Aufrufen von `findAll()`
+|Es wird die Liste der Repository gespeicherten Travelguides zurückgegeben
+
+|U-TRV-010
+|Test von `findById()` in TravelguideManagement
+|Es sind Travelguides in der Datenbank
+|Aufrufen von `findById()` mit id
+|Es wird ein Optional<Travelguide> zurückgegeben, der den Travelguide mit der entsprechenden Id enthält, ansonsten ein leeres Optional
+
+|U-TRV-011
+|Test von `findByCity()` in TravelguideManagement
+|Es sind Travelguides in der Datenbank
+|Aufrufen von `findByCity()` mit String
+|Es wird die Liste der Repository gespeicherten Travelguides zurückgegeben, deren Stadt-Attribut den entsprechenden String (ignoriert groß/kleinschreibung) enthält.
+
+|U-TRV-012
+|Test der Konstruktorargumente von TravelguideController
+|--
+|Erstellung eines neuen TravelguideManagement, Übergabe von `null`
+|NPE
+
+|I-TRV-001
+|Test von `travelguides()` in TravelguideController
+|--
+|Aufrufen von `travelguides()`
+|Die Übersichtsseite über die Reiseführer enthält die Liste aller in der Datenbank gespeicherten Travelgudies
+
+|I-TRV-002
+|Test von `travelguideDetails()` in TravelguideController
+|Es gibt einen Travelguide in der Datenbank
+|Aufrufen von `travelguideDetails()` mit id
+|Die Detailseite enthält die Attributinformationen des Travelguides mit der angegebenen id aus der Datenbank
+
+|I-TRV-003
+|Test von `editTravelguide()` in TravelguideController
+|Es gibt einen Travelguide in der Datenbank
+|Aufrufen von `editTravelguide()` mit id, auf der Bearbeitungsseite ein Attribut ändern und speichern
+|Man wird auf die Übersichtsseite der Travelguides weitergeleitet und die eingegebenen Änderungen werden in die Datenbank geschrieben
+
+|I-TRV-004
+|Test von `createTravelguide()` in TravelguideController
+|--
+|Aufrufen von `createTravelguide()`, auf der Erstellungsseite die Attribute eintragen und speichern
+|Man wird auf die Übersichtsseite der Travelguides weitergeleitet und ein neuer Travelguide mit den eingegebenen Daten wurde in der Datenbank erstellt
+
+|I-TRV-005
+|Test von `deleteTravelguide()` in TravelguideController
+|--
+|Aufrufen von `deleteTravelguide()` mit id
+|Man wird auf die Übersichtsseite der Travelguides weitergeleitet und der Travelguide mit der angegebenen id wurde aus der Datenbank gelöscht
+
+|I-TRV-006
+|Test von `travelguideSale()` in TravelguideController
+|--
+|Aufrufen von `travelguideSale()`, auf der Verkaufsseite eine Stadt eingegeben und einen Reiseführer aus der Liste gewählt
+|Man wird auf die Übersichtsseite der Travelguides weitergeleitet und ein Invoice wurde in die entsprechende Datenbank mit dem Preis des Reiseführers geschrieben
+
+===
+
+|U-BOO-000
+|Test der `getter` von Booking
+|--
+|Erstellung eines neuen Booking
+|`getter` gibt die korrekten Werte zurück
+
+|U-BOO-010
+|Test der `getter` von BookingDataForm
+|--
+|Erstellung eines neuen BookingDataForm
+|`getter` gibt die korrekten Werte zurück
+
+|U-BOO-020
+|Test der Konstruktorargumente von BookingManagement
+|--
+|Erstellung eines neuen BookingManagement, Übergabe von `null`
+|NPE
+
+|I-BOO-021
+|Test von `createBooking()` in BookingManagement
+|--
+|Erstellung eines neuen BookingDataForm, Aufrufen von `createBooking()`
+|Im Repository ist eine neue Booking mit den korrekten Attributen gespeichert
+
+|I-BOO-022
+|Test von `deleteBooking()` in BookingManagement
+|Es ist ein Booking in der Datenbank, welches die Vorraussetzungen zum Löschen erfüllt
+|Aufrufen von `deleteBooking()` mit dem Booking
+|Die entsprechende Booking wird aus dem Repository gelöscht, und wenn sie vorher als bezahlt markiert war, wurden die Invoices erstellt
+
+|I-BOO-022
+|Test von `payBooking()` in BookingManagement
+|Es ist ein Booking in der Datenbank, welches die Vorraussetzungen zum bezahlen erfüllt
+|Aufrufen von `payBooking()` mit dem Booking
+|Die entsprechende Booking wird auf den Status `PAID` gesetzt, und es wurden die dazugehörigen Invoices erstellt
+
+|I-BOO-023
+|Test von `cancelBooking()` in BookingManagement
+|Es ist ein Booking in der Datenbank, welches die Vorraussetzungen zum stornieren erfüllt
+|Aufrufen von `cancelBooking()` mit dem Booking
+|Die entsprechende Booking wird auf den Status `CANCELLED` gesetzt, und es wurden die dazugehörigen Invoices erstellt,
+die Stornierungsgebühren wurden korrekt abgerechnet
+
+|I-BOO-024
+|Test vom `openBookingHandler()`
+|Es gibt eine Buchung für die eine Mahnung versand werden muss und eine die verfällt
+|Aufrufen von openHandler()
+|Es werden die entsprechenden Emails versand und die verfallene Buchung bekommt den Status `UNPAID`
+
+===
+
+|I-INV-100
+|Test der `getter` von Invoice
+|--
+|Erstellen einer neuen Invoice
+|`getter` geben eingegebenen Wete zurück
+
+|I-INV-101
+|Test von `isRevenue` , `isExpense`
+|--
+|Erstellen einer neuen Invoice mit positivem /negativem  `value`
+|bei positivem `value` gibt `isRevenue()` `true` zurück und `isExpense()` `false`, und bei negativem anders herum
+
+|I-INV-110
+|Test der `getter` von InvoiceEntry
+|--
+|Erstellen einer neuen InvoiceEntry
+|`getter` geben eingegebenen Wete zurück
+
+|I-INV-120
+|Test von AccountingManagement, ob im Constructor Parameter mit Wert `null` nicht akzeptiert werden
+|--
+|Erstellen eines AccountingManagement mit `null` als Parameter
+|AccountingManagement wirft NullpointerException
+
+|I-INV-121
+|Test von `createInvoice()` in AccountingManagement
+|--
+|Ausführen von `createInvoice()` mit korrekten Parametern
+|Die erstellte Invoice liegt in `invoices`
+
+|I-INV-122 
+|Test von `getInvoiceList()` in AccountingManagement
+|Es sind  6 Invoices in `invoices`
+|Ausführen von `listDynamicAccounting()` mit einem Interval, welches 2 der Invoices in `invoices` enthält
+|Die Länge der zurückgegebenen Liste ist `2`.
+
+|I-INV-123
+|Test von `sellTravelguide()`, ob `invoices` erstellt werden
+|Es existiert ein Travelguide
+|Ausführen von sellTravelGuide() mit einem Travelguide als Parameter
+|Ein zum Travelguide passendes Invoice wird erstellt
+
+|I-INV-130
+|Test von AccountingController, ob im Constructor Parameter mit Wert `null` nicht akzeptiert werden
+|--
+|Erstellen eines AccountingController mit `null` als Parameter
+|AccountingController wirft NullpointerException
+
+|I-INV-131
+|Test von `accounting()` in AccountingController
+|Role ist `boss`
+|Ausführen von `accounting()`
+|Ausgabe der korrekten Tages-, Monats-, und Jahres InvoiceEntrys 
+
+|I-INV-132
+|Test von `dynamicaccounting()` in AccountingController
+|Role ist `boss`
+|Eingabe eines Intervals
+|Ausgabe von Invoices in diesem Interval
+
+===
+
+|U-ACM-001
+|Test von AccommodationManagement, das `accommodations` in der AccommodationRepository vorliegen
+|--
+|Erstellen eines AccommodationManagement's
+|`accommodations` sind nicht `null`
+
+|U-ACM-002 
+|Test der `findAll()` Methode des AccommodationManagement's
+|Es liegen Accommodation's vor 
+|--
+|`findAll()` gibt alle Accommodations zurück
+
+|U-ACM-003
+|Test der `findAllCitiesContaining()` Methode des AccommodationManagement's
+|Es liegen Accommodation's vor in den Städten "Shanghai" und "Sydney"
+|Es wird der String "S" in die Funktion eingegeben
+|`findAllCitiesContaining()` gibt die Accommodation in Sydney und in Shanghai zurück, sowohl auch alle anderen Accommodations die in einer Stadt sind die den Anfangsbuchstaben "S" haben
+
+
+|U-ACM-011
+|Test von AccommodationController, das `AccommodationManagement` nicht `null` ist
+|--
+|Erstellen eines AccommodationControllers
+|`AccommodationManagement` ist nicht `null`
+
+|I-ACM-101 
+|Test der `createAccommodation()` Funktion des AccommodationManagements 
+|--
+|Ausführen der `createAccommodation()` Methode mit korrekten Parametern
+|Die Accommodation liegt in der AccommodationRepository vor
+
+|U-ACM-102
+|Test der `deleteAccommodation()` Funktion des AccommodationManagements 
+|Es liegen `Accommodations` in der AccommodationRepository vor
+|Ausführen der `deleteAccommodation()` Methode mit korrekten Parametern
+|Die Accommodation liegt nicht mehr in der AccommodationRepository vor
+
+|U-CUS-001
+|Test der `getter` von Customer
+|--
+|Erstellen eines neuen Customers
+|`getter` geben eingegebene Werte zurück
+
+|U-CUS-011
+|Test von CustomerManagement, ob `customers` nicht `null` sind
+|--
+|Erstellen eines CustomerManagement
+|`customer` ist nicht `null`
+
+|U-CUS-021
+|Test von CustomerController, ob `customerManagement` nicht `null` ist
+|--
+|Erstellen eines CustomerController
+|`customerManagement` ist nicht `null`
+
+|I-CUS-101
+|Test von `createCustomer()` in CustomerManagement
+|--
+|Ausführen von `createCustomer()` mit korrekten Parametern
+|Der erstellte Customer liegt in `customers`
+
+|I-CUS-102
+|Test von `deleteCustomer()` in CustomerManagement
+|Es existiert der Customer, der gelöscht werden soll, in `customers`
+|Ausführen von `delteCustomer()` mit korrekten Parametern
+|Customer wird gelöscht und existiert nicht mehr in `customers`
+
+|I-CUS-103
+|Test von `findAllCustomers()` in CustomerManagement
+|Es existieren bereits Customer in `customers`
+|Ausführen von `findAllCustomers()`
+|Alle in `customers` liegenden Customer werden ausgegeben
+
+|I-CUS-104
+|Test von `findById()` in CustomerManagement
+|Es existiert ein Customer mit der ID '8'
+|Ausführen von `findById()` mit übergebener ID = 8
+|Customer aus `customers` mit der ID=8 wird ausgegeben
+
+|U-USR-001
+|Test der `getter` von User
+|--
+|Erstellen eines neuen Users
+|`getter` geben eingegebene Werte zurück
+
+|U-USR-002 
+|Test der `findAll()` Methode des UserManagement's
+|Es liegen User vor 
+|Ausführen der `findAll()` Methode
+|`findAll()` gibt alle User zurück
+
+|I-USR-010
+|Test von `createUser()` in UserManagement
+|--
+|Ausführen von `createUser()` mit korrekten Parametern
+|Der erstellte User liegt in `users`
+
+|I-USR-011
+|Test von `deleteUser()` in UserManagement
+|Es existiert der User, der gelöscht werden soll, in `users`
+|Ausführen von `delteUser()` mit korrekten Parametern
+|User wird gelöscht und existiert nicht mehr in `users`
+
+|I-USR-012
+|Test von `editUser()` in UserManagement
+|Es existiert der User, der editiert werden soll, in `users`
+|Ausführen von `editUser()` mit korrekten Parametern
+|Der editierte User liegt in `users`
+
+|===

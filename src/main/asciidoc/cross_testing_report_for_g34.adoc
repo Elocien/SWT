@@ -1,0 +1,200 @@
+= Cross-Testing Feedback
+
+__Durchführende Gruppe:__ 
+ 35 +
+__Anwendung von Gruppe:__
+ 34 +
+
+== Getestetes System
+//Welche Aufgabe/Problemstellung löst die Anwendung.
+//Eventuell noch kürzen, bisher nur aus Pflichtenheft von Gruppe 34 kopiert
+=== Aufgabenstellung
+
+==== Reiseveranstalter
+
+Städtereisen nach London, Rom oder Kopenhagen werden immer beliebter. Der Reiseveranstalter
+CityTours Will sich in diesem Marktsegment etablieren und unterbreitet seinen Kunden
+individuelle Angebote. Der Kunde kann sich seine ganz persönliche Reise zusammenstellen.
+Zunächst versuchen die Mitarbeiter im Reisebüro, die Wünsche des Kunden zu analysieren, um
+ihm das für ihn passende Angebot zu erstellen. Dabei werden folgende Angaben erfasst:
+
+
+* Zielort
+* Art der Unterkunft (einfach, Standard, gehobener Standard, Luxus)
+* Lage der Unterkunft (Stadtgebiet zentral, Stadtgebiet Rand, Umland) +
+
+
+
+Wunschtermin und Reisedauer Mit diesen Angaben kann nun ein Angebot erstellt werden. Dazu
+werden alle aufgrund der Kundenwünsche möglichen Unterkünfte aus dem Datenbestand
+herausgesucht und die Verfügbarkeit für die gewünschte Reisedauer geprüft. Wenn es keine
+„Treffer“ gibt, muss ein neuer Vorschlag unterbreitet werden, wobei entweder der Termin oder die
+Art der Unterkunft abzuändern ist. Ansonsten kann der Kunde eine Unterkunft auswählen, sofern
+mehrere zur Verfügung stehen. Wenn sich der Kunde für die Reise entschieden hat, werden seine
+Personendaten aufgenommen (bzw. anhand der Kundennummer übertragen, falls der Kunde
+schon erfasst ist) und eine Buchungsbestätigung erstellt. Die Buchung ist verbindlich, kann jedoch
+nachträglich storniert werden. Dabei fallen bis eine Woche vor Reisebeginn Stornierungsgebühren
+in Höhe von 30% des Reisepreises an, von da ab ist der volle Reisepreis zu entrichten. Die
+Bezahlung der Reise erfolgt entweder bar oder per Überweisung bis spätestens drei Tage vor
+Reiseantritt. Falls diese Frist überschritten wird, ist eine Mahnung zu versenden. Unabhängig von
+der Arbeit mit dem Kunden müssen auch andere, verwaltungstechnische Aufgaben gelöst werden,
+für die normalerweise der Chef von CityTours persönlich verantwortlich ist. Neue Unterkünfte
+(Bild,
+ Beschreibung,
+ Lage,
+ Ausstattung,
+ Preis,
+ Zimmer-/Bettenanzahl,
+Vermittlungsgebühr/Provision) sind in die Datei aufzunehmen. Daneben bemüht sich der
+Veranstalter, stets weitere Städte als Reiseziel anzubieten. Außerdem obliegt dem Chef die Tages-,
+Monats- und Jahresabrechnung, die Personalverwaltung und die Pflege des Kundenstammes. Wenn
+ein Kunde länger als drei Jahre keine Reise bei CityTours gebucht hat, soll er aus der Datenbank
+gelöscht werden. Um sozusagen ein zweites Standbein aufzubauen, hat CityTours einen weiteren
+Geschäftsbereich übernommen. Seit kurzem kann man in den Filialen zu den angebotenen
+Reisezielen Stadtführer aus dem CityGuide-Verlag erwerben. Der Verkauf bzw. die Verwaltung der
+Bücher soll ebenfalls über die Software erledigt werden. Eine Lagerverwaltung für die Bücher ist
+dabei nicht notwendig. Entwickeln Sie eine Software, die sowohl die Mitarbeiter der CityTours-
+Filialen als auch den Chef von CityTours bei ihren jeweiligen Aufgaben unterstützt.
+
+==== Zielsetzung
+
+Grundlegend soll ein System fuer CityTours erstellt werden, ueber welches die Verwaltung ihres
+Geschaefts mit Kundenkontakt umgesetzt werden kann. Somit ist das Ziel eine praesentierbare
+Benutzeroberflaeche zu schaffen, welche mit einer erweiterbaren, gut funktionierenden, einfach
+verwaltbaren Geschaeftslogik interagiert.
+
+Insgesamt soll der Softwareentwicklungsprozess innerhalb von 12 Wochen abgeschlossen sein.
+Dazu sollen in den zwei Wochen nach Fertigstellung des Pflichtenhefts Anwendungsprototypen und
+ein Entwicklungsentwurf erstellt werden, die die technischen Anforderungen erweitern und
+verfeinern koennen. In der darauffolgenden Implementierung ist das Ziel, die in diesem Heft
+festgeschriebenen Anforderungen umzusetzen und gegebenfalls benoetigte Erweiterungen zu
+beruecksichtigen. Dabei sind regelmaessige Absprachen mit dem Kunden, CityTours, besonders
+wichtig und sollen einmal woechentlich stattfinden, um Erwartungen und Umsetzung aneinander
+anzupassen.
+
+Im Endergebnis soll CityTours nicht nur die Software, sondern auch eine Dokumentation der
+Entwicklungsentscheidungen zur Verfuegung gestellt werden.
+
+==== Produktnutzung
+
+Das System soll von CityTours als Website genutzt werden können, um Reisen von Mitarbeiten für
+Kunden buchen lassen zu können. Da das System in der Filiale genutzt wird, liegt die Hauptlast auf
+ihm zu den Oeffnungszeiten. Es soll allerdings, zum Beispiel im Rahmen administrativer Aufgaben,
+24/7 genutzt werden koennen.
+Das System wird hauptsaechlich innerhalb der Firma genutzt, soll aber prinzipiell von ueberall
+genutzt werden koennen. Die Software soll deshalb auf einem Server laufen und ueber das Internet
+durchgehend erreichbar sein.
+Unterstuetzt werden folgende Browser:
+
+* Mozilla Firefox, version 55.0.3+
+* Google Chrome, version 61.0.3163+
+
+Die hauptsächlichen Nutzer der Software sind Mitarbeiter der Firma CityTours, einschließlich des
+Chefs, die nicht zwangsläufig technische Vorerfahrungen haben. Das System gliedert sich in zwei
+Bereiche unterschiedlicher Zugangsberechtigungen, die jeweils durch ein gueltiges Login erreicht
+werden. Es soll einen Teil geben, der fuer jeden Mitarbeiter frei zugaenglich ist und genutzt werden
+kann und es soll einen weiteren Teil geben, der nur dem Chef vorbehalten ist. Dieser zweite Teil
+bietet noch bessere Moeglichkeiten zur Verwaltung der einzelnen Komponenten von der nicht-
+technischen Seite aus.
+
+Neue Daten sollen durchgehend in einer Datenbank gespeichert und ueber die Anwendung leicht zugaenglich gemacht werden.
+
+Es sollte kein grosser Wartungsaufwand anfallen, weil die Firma selbst keine technische Abteilung
+besitzt.
+
+== Fehler-Report
+
+[options="header"]
+|===
+|Pfad |Parameter |Beschreibung |Rückgabe
+| http://localhost:8080/users/edit/27?mode=edit
+| keine Änderung, nur Speichern | Editieren des Nutzers ohne Änderung der Attribute | Passwort funktioniert nicht mehr
+| http://localhost:8080/users/register
+| Name: test, Passwort " ", Gehalt 123, Adresse = "Test" | Registieren eines Nutzers mit leerzeichen als Passwort | Whitelabel Error, Password must not be null or empty! 
+| http://localhost:8080/users/edit/27?mode=edit
+| Passwort " ", Rest bleibt default | Editieren des Nutzers Passwort wird auf " " gesetzt | Whitelabel Error, Password must not be null or empty! |
+|===
+
+== Sonstiges
+=== Optik der Anwendung
+
+* Umlaute sind nur manchmal benutzt (siehe "Reiseführer" in Navbar und "Reisefuehrer" in Überschrift)
+
+* F0320:
+    ** Auf einer deutschen Seite sollte die Meldung, dass die Suche angepasst wurde, auch auf deutsch übersetzt werden
+
+* F0450:
+    ** Auf der englischen Stornierungs Seite gibt es 2 “Cancel” buttons. Der Rote ist mit dem rest des designs konsistent, der gelbe stornierungs button sollte vielleicht umbenannt werden (z.b. “Cancel Booking”)
+
+=== Fehlende Features
+
+* F0210: 
+** benutzergesteuertes Filtern und Sortieren der Tourguides fehlt (nur Filterung nach Name vorhanden, nach Stadt wäre z.B. sinnvoller)
+
+* F0340:
+** Die Unterkunft hat keine Provision / Vermittlungsgebühr
+
+* F0430:
+** abgeschlossene Buchungen kann man sich nicht im Detail anschauen (sollte aber für alle Buchungen möglich sein)
+** Es gibt keinen Button nur für die Detailseite, nur Buttons um die Buchung zu verändern (Löschen, Bezahlen, Stornieren)
+
+* F0510:
+** benutzergesteuertes Filtern und Sortieren der Nutzer (Mitarbeiter) fehlt 
+
+=== Interaktion mit der Anwendung (Usability)
+
+* Buttons sind manchmal nicht eindeutig identifizierbar. Eine Idee wäre z.B. eine kleine Popup Meldung, die bei "Drübergehen" über den Button sichtbar wird
+
+* F0220 / UC0220:
+** Es gibt keinen Detailansichtsbutton, auch Klick auf Objekt funktioniert nicht wie in UC beschrieben
+*** Wenn man nur in die Detailansicht möchte, will man ja nicht auf Kaufen, Editieren oder Löschen klicken
+
+* F0240: 
+** wenn ich ein Tourguide verändere bekommt er eine neue Id, obwohl ich ja eigtl. keinen Neuen erstellen will, sondern nur den Existierenden verändern.
+*** Dazu werden auch beim Weiterleiten nach dem Validieren von edit die URL bei edit/id/\{id\} gelassen, sodass man beim Neuladen der Seite einen weiteren Tourguide mit den gleichen Werten erstellt
+** beim Input Preis werden 3 und mehr Nachkommastellen erlaubt (`step` steht in html auf "any")
+*** In /create/null werden auch die 3 bzw. mehr Nachkommastellen in der Liste angezeigt
+
+* F0630
+** Nutzererstellung
+*** Salary ist durch Frontend auf ganzzahlige Werte beschränkt (`step` Attribute), aber z.B beim Editieren eines Nutzers ist das nicht der Fall
+*** Kein Abfang von falschen Inputs (nur Leerzeichen)
+** Nutzereditierung
+*** Beim Abbrechen des Editiervorgangs hängen dann an der URL die Nutzerdetails, ist nicht notwendig und unter Umständen verwirrend für den Nutzer
+*** Kein Abfang von falschen Inputs (nur Leerzeichen)
+
+== Verbesserungsvorschläge
+
+* F0240:
+** beim Erstellen /Editieren direkt auf /list redirecten und nicht auf /create/null oder /edit/id/\{id\} -> Mit `RedirectAttributes` arbeiten bzw. "redirect: ..." returnen
+** beim Löschen nach Bestätigung fragen
+** es können Tourguides mit leerem Titel erstellt werden (nur Leerzeichen). Das gleiche gilt auch für das Editieren.
+
+
+* F0340:
+** es können Unterkünfte mit leerem Namen (nur Leerzeichen) erstellt werden
+** es können Unterkünfte mit 0 Betten erstellt werden (sollten min. 1 Bett haben)
+** es können Unterkünfte erstellt werden, deren Preis pro Nacht 0€ beträgt (sollten min. mehr als 0€ betragen)
+
+** Hochgeladene Bilder sollten bei der Erstellung einer neuen Unterkunft richtig skaliert werden (aktuell kann man beliebig große Bilder hochladen, die z.B. die Navigationsleiste überdecken)
+
+
+** Um eine Unterkunft löschen bzw. bearbeiten zu können, muss zuerst ein Buchungsdatum in der Zukunft ausgewählt werden (man sollte nur auf den jeweiligen Button klicken müssen)
+
+* F0440 /0450:
+** Man kann unter Anderem angebrochene Buchungen stornieren -> Serverseitige Verifikation ob die Zustandsüberführung(bezahlen, löschen, stornieren) bei Buchungen überhaupt zulässig ist
+
+* F0540/0545
+** es können Kunden mit leerem Namen, einer leeren E-Mail und einer leeren Adresse erstellt werden (nur Leerzeichen). Das gleiche gilt auch für das Editieren von Kunden
+
+* F0630
+** Nutzereditierung:
+*** Das verschlüsselte Kundenkennwort wird angezeigt und kann bearbeitet werden, was aus offensichtlichen Gründen nicht funktioniert. Hier sollte z.B das Textfeld initial leer gelassen werden und nur, wenn tatsächlich ein neues Passwort eingetragen wird, wird es auch aktualisiert.
+
+* F0710:
+** die Gesamteinnahmen noch Aufschlüsseln nach gesamte Buchungen, gesamte verkaufte Travelguides
+** Bei den Ausgaben stehen keine Buchungen, bekommen die Unterkunftsvermieter nichts?
+** kann ein Betrag negativ sein
+** Statt Ergebnis Gewinn und statt Einnahmen Umsatz also in der Gesamtansicht
+** Diagramme wie in F0710 schon als Option genannt wären gut
+** Bessere Vergleichsmöglichkeit von den letzten Tagen / Monaten / Jahren

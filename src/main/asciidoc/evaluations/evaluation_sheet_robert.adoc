@@ -1,0 +1,38 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2019/20
+// Auch wenn der Bogen nicht anonymisiert ist, dürfen Sie gern Ihre Meinung offen kundtun.
+// Sowohl positive als auch negative Anmerkungen werden gern gesehen und zur stetigen Verbesserung genutzt.
+// Versuchen Sie in dieser Auswertung also stets sowohl Positives wie auch Negatives zu erwähnen.
+
+**Von: Robert Thoss**
+
+**Gruppe: 35**
+
+== Was habe ich gelernt?
+* Grundlagen: HTML5, Thymeleaf und Javascript
+* Fähigkeiten in Java verbessert
+* Erfahrung im Umgang mit Javadoc erlangt
+* Nutzung des Spring Framework
+
+== Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+// Kurze Beschreibung der Zusammenarbeit im Team. Was lief gut? Was war verbesserungswürdig? Was würden Sie das nächste Mal anders machen?
+* Jeder hat am Anfang eine Aufgabe, die dann auch erfüllt wurde
+* Treffen mit unterschiedlichen Stundenplänen oder Fachsemestern sind schwierig zu koordinieren
+* Die Gruppenarbeit lief gut, auch wenn ich wenig Programmiererfahrung hatte
+* nur durch gute Kommunikation gibt es gute Teamarbeit
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+* Salespoint ist unintuitiv
+* Bei Salespoint braucht man zum Verstehen oft länger, als wenn man selbst die einzelnen Komponenten programmiert
+* Spring macht das Arbeiten deutlich einfacher, da man sich um weniger kümmern muss
+* Salespoint passt mit seinen Features eher weniger zu unserer Aufgabenstellung
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+* SWT Vorlesung und Praktikum in einem Semester fänd ich sinnvoll.
+* Durch die Meilensteine waren einige Wochen vom Zeitaufwand sehr überladen wodurch andere kaum Inhalte hatten
+
+== Feedback für den Tutor
+* Julian hat einen guten Job gemacht.
+
+== Sonstiges und Anmerkungen
+* In einer von den Vorlesungen zum Praktikum am Anfang des Semesters wurde gesagt wir sollen "unbedingt" möglichst viel Salespoint benutzen, obwohl es meiner Meinung nach oftmahls sinvoller war Salespoint zu benutzen.
+  Das Problem hierbei ist das z.B. unsere Aufgabe einem Onlineshop nicht wirklich ähnlich ist. 

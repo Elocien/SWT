@@ -1,0 +1,57 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+	</head>
+	<body>
+		<div th:fragment="navigation">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+				<div class="container">
+					<a class="navbar-brand" th:href="@{/}">
+						<b>
+							<font style="color:#FF0000">t</font>
+							<font style="color:#FF9900">o</font>
+							<font style="color:#FFFF00">u</font>
+							<font style="color:#00FF00">r</font>
+							<font style="color:#00FFFF">a</font>
+							<font style="color:#4A86E8">b</font>
+							<font style="color:#0000FF">l</font>
+							<font style="color:#9900FF">e</font>
+						</b>
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarResponsive">
+						<div class="navbar-nav mr-auto">
+							<a class="nav-item nav-link" th:classappend="${#request.requestURI.startsWith('/bookings') ? 'active' : ''}" sec:authorize="isAuthenticated()" th:href="@{/bookings}" th:text="#{bookings}">BOOKINGS</a>
+							<a class="nav-item nav-link" th:classappend="${#request.requestURI.startsWith('/travelguides') ? 'active' : ''}" sec:authorize="isAuthenticated()" th:href="@{/travelguides}" th:text="#{travelguides}">TRAVELGUIDES</a>
+							<a class="nav-item nav-link" th:classappend="${#request.requestURI.startsWith('/customers') ? 'active' : ''}" sec:authorize="isAuthenticated()" th:href="@{/customers}" th:text="#{customers}">CUSTOMERS</a>
+							<a class="nav-item nav-link" th:classappend="${#request.requestURI.startsWith('/accommodations') ? 'active' : ''}" sec:authorize="isAuthenticated()" th:href="@{/accommodations}" th:text="#{accommodations}">ACCOMMODATIONS</a>
+						</div>
+						<div class="navbar-nav mr-auto">
+							<a class="nav-item nav-link" th:classappend="${#request.requestURI.startsWith('/cities') ? 'active' : ''}" sec:authorize="hasRole('BOSS')" th:href="@{/cities}" th:text="#{cities}">CITIES</a>
+							<a class="nav-item nav-link" th:classappend="${#request.requestURI.startsWith('/users') ? 'active' : ''}" sec:authorize="hasRole('BOSS')" th:href="@{/users}" th:text="#{users}">USERS</a>
+							<a class="nav-item nav-link" th:classappend="${#request.requestURI.startsWith('/accounting') ? 'active' : ''}" sec:authorize="hasRole('BOSS')" th:href="@{/accounting}" th:text="#{accounting}">ACCOUNTING</a>
+						</div>
+						<div class="navbar-nav">
+							<span class="navbar-text" sec:authorize="isAuthenticated()" th:text="${#authentication?.name}">USERNAME</span>
+							<a class="btn btn-outline-success my-2 my-sm-0" th:href="@{/login}" sec:authorize="!isAuthenticated()" th:text="#{buttons.login}">LOGIN</a> 
+							<form class="form-inline my-2 my-lg-0" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                				<button type="submit" class="btn btn-outline-danger my-2 my-sm-0" th:text="#{buttons.logout}">LOGOUT</button>
+                			</form>
+						</div>
+					</div>
+				</div>
+			</nav>
+			
+			<script th:src="@{/resources/js/vendor/jquery.min.js}"></script>
+  			<script th:src="@{/resources/js/vendor/bootstrap.bundle.min.js}"></script>
+		</div>
+	</body>
+</html>

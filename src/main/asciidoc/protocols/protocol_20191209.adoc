@@ -1,0 +1,49 @@
+= Protokoll Gruppe 35
+
+Treffen am 09.12.2019
+
+Ort:      Vor APB 2074 +
+Beginn:   15:00 Uhr +
+Ende:     15:30 Uhr 
+
+__Schriftführer:__
+Florian Richter +
+
+*Nächstes Treffen:* +
+16.12.2019, 14:50 Uhr, Vor APB 2074
+
+__Teilnehmer:__
+
+* Julian (Tutor)
+* Robert
+* Pascal (Teamleiter)
+* Leon
+* Lucian
+* Florian (Protokollant)
+
+== Bemerkungen
+* Unterkunft und Kunden werden beim löschen nur disabled um die Integrität der Buchungen zu erhalten
+* Alternativvorschläge bei Unterkunftssuche:
+** alternativ +-1 bei Typ und Location
+** alternativ +-3 Tage bei Buchungszeitraum (Länge bleibt fix)
+** jeweils 1 Vorschlag für jede Änderung (1 für Typ, 1 für Location, 1 für Zeitraum)
+* Lucian soll mehr Zeit für das Projekt aufwenden
+* die Zwischenverteidigung war gut, es gab keine Kritik
+
+
+== Retrospektive des letzten Sprints
+* Testabdeckung ist wieder weiter gestiegen (auf 60.9%)
+* die Sprache ist nun auch einheitlich über Strings in messages.properties geregelt
+* Mahnungen können verschickt werden
+* Salary wird abgerechnet
+* Image Upload in Unterkunftserstellung als MultipartFile mit abspeichern in Byte Array
+
+
+
+== Aktueller Stand
+* im Zeitplan
+
+== Planung des nächsten Sprints
+* Testabdeckung weiter steigern
+* letzte Musskriterien einfügen (Alternativvorschlag bei Unterkünften)
+* Feinschliff an der Implementierung der Kriterien

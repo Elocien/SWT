@@ -1,0 +1,61 @@
+= Protokoll Gruppe 35
+
+Treffen am XX.XX.2019
+
+Ort:      Vor APB 2074 +
+Beginn:   15:00 Uhr +
+Ende:     15:30 Uhr 
+
+__Schriftführer:__
+Florian Richter +
+
+*Nächstes Treffen:* +
+19.11.2019, 13:00 Uhr, Vor APB 2074
+
+__Teilnehmer:__
+
+* Julian (Tutor)
+* Robert
+* Pascal (Teamleiter)
+* Leon
+* Lucian
+* Florian (Protokollant)
+
+== Bemerkungen
+* Yafei hat die Gruppe verlassen
+* Somit wird die Aufgabenstellung kleiner, bzw. darf am Ende was fehlen
+* Continuous Integration
+** jenkins Server
+*** Anmeldedaten im Repo
+*** Anschauen, ausprobieren -> Konsoloutput wenn was schief läuft benutzen
+** Sonarqube
+*** 50% Testgrad muss erreicht werden
+*** läuft nur auf master branch
+
+== Retrospektive des letzten Sprints
+* Pflichtenheft ist super
+* Robert hatte immernoch Probleme beim videoshop, soll heute abend noch sein momentanen Stand pushen
+
+
+== Aktueller Stand
+* Entwurfsklassendiagramme sind fertig
+* Pflichtenheft wurde nach den Änderungsvorschlägen aktualisiert
+* Developer Docmentation wurde angefangen
+
+== Besprochene offene Punkte
+* Gehaltsabrechnung
+** am ersten Tag des Monats insgesamt in einer Abbunchung abrechnen
+** bei entlassenen Mitarbeiter Gehalt auf 0 setzen, falls nicht löschbar
+* fontawesome kann man gut für Icons nutzen
+
+== Planung des nächsten Sprints
+* Prototyp implementieren
+** Pascal setzt das Grundgerüst auf
+** jeder Implementiert seine Komponente:
+*** Pascal - Travelguide
+*** Lucian - Accommodation
+*** Robert - User
+*** Leon - Customer
+*** Florian - Accounting
+*** gemeinsam - Tourable, Booking
+|===

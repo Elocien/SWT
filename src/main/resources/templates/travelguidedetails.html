@@ -1,0 +1,64 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />		
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />		
+		<title th:text="#{travelguides.details}">TITLE</title>
+	</head>
+	<body class="bg-light">
+		<div th:include="navigation :: navigation"></div>
+		
+		<div class="container">
+			<div class="modal" id="deleteModal">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header bg-danger">
+							<h4 class="modal-title" th:text="#{travelguides.modal.deletion.title}">DELETION_TITLE</h4>
+							<button type="button" class="close" data-dismiss="modal">×</button>
+						</div>
+						<div class="modal-body">
+							<p th:text="#{travelguides.modal.deletion.content}"></p>
+						</div>
+						<div class="modal-footer">
+							<form class="mr-auto col-sm-6" th:action="@{/travelguides/delete}" method="post">
+								<input type="hidden" name="id" th:value="${travelguide.id}" />
+								<input type="submit" class="btn btn-primary btn-block" th:value="#{buttons.confirm}" />
+							</form>
+							<button type="button" class="btn btn-secondary btn-block col-sm-6" th:text="#{buttons.abort}" data-dismiss="modal">ABORT</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="pb-2 mt-4 mb-2">
+						<h1 th:text="#{travelguides.details}">TITLE</h1>
+					</div>
+					<div class="mt-4">
+					<dl class="row">
+							<dt class="col-sm-1" th:text="#{travelguides.name}">CITYNAME</dt>
+							<dd class="col-sm-11" th:text="${travelguide.name}">VALUE</dd>
+							
+							<dt class="col-sm-1" th:text="#{travelguides.city}">CITYNAME</dt>
+							<dd class="col-sm-11" th:text="${travelguide.city.name}">VALUE</dd>
+							
+							<dt class="col-sm-1" th:text="#{travelguides.price}">CITYNAME</dt>
+							<dd class="col-sm-11" th:text="|EUR ${#numbers.formatDecimal(travelguide.price, 1, 2, 'COMMA')}">VALUE</dd>
+						</dl>
+					</div>
+					<div class="mt-4">
+						<a class="btn btn-primary" sec:authorize="hasRole('BOSS')" th:href="@{/travelguides/edit?id={id}(id=${travelguide.id})}" th:text="#{buttons.edit}">EDIT</a>
+						<a class="btn btn-secondary" th:href="@{/travelguides}" th:text="#{buttons.back}">BACK</a>
+						<button type="button" class="btn btn-danger float-right" sec:authorize="hasRole('BOSS')" data-toggle="modal" data-target="#deleteModal" th:text="#{buttons.delete}">DELETE</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div th:include="footer :: footer"></div>
+	</body>
+</html>

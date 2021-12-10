@@ -1,0 +1,30 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2019/20
+
+**Von:** Pascal Juppe
+
+**Gruppe:** 35
+
+== Was habe ich gelernt?
+- Umgang mit Spring Framework und Thymeleaf
+
+== Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+- Aufteilung einzelner Komponenten an verschiedene Personen funktioniert gut
+- Nutzung von Storyboards zur Koordination der Aufgaben hat die Übersicht im Entwicklungsprozess stark vereinfacht
+- unsere Gruppe bestand aus Personen verschiedener Studiengänge und Fachsemestern, weshalb wir effektiv nur einen Termin in der Woche gefunden haben, an dem tatsächlich alle Zeit haben
+- gruppeninterne Kommunikation über WhatsApp sehr effektiv, dagegen eher geringe Nutzung von Slack
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+- Einarbeit in Spring benötigt etwas Zeit, allerdings sind auch mit vergleichsweise wenigen Kenntnissen viele Dinge möglich
+- Aufgrund der Natur unserer Aufgabenstellung haben wir SalesPoint nur wenig verwendet
+- Falls wir doch einmal SalesPoint verwenden wollten, war es meist zu unflexibel (zum Beispiel: Nutzung der Email als primary key im UserAccount, dadurch Änderung der Email zur Laufzeit eher problematisch)
+- Spring verwendet viel "code magic", viele Sachen passieren zur Laufzeit, die nicht im Quellcode direkt ersichtlich sind. Ich persönlich konnte mich recht schnell hineinfinden, aber für andere Studenten, die evtl. im Praktikum das erste Mal mit Java arbeiten, ist das Verstehen und Nachvollziehen des Quellcodes komplizierter
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+- Gruppen sollten nur aus Studenten des gleichen Studienganges und (wenn möglich) des gleichen Fachsemesters gebildet werden, um mehr Raum für persönliche Treffen zu schaffen (mglw. war unsere Gruppe hier eine Ausnahme)
+
+== Feedback für den Tutor
+- gutes Feedback
+- klare Kommunikation
+
+== Sonstiges und Anmerkungen
+Durch einiges Vorwissen und Arbeit neben dem Studium im Bereich der agilen Softwareentwicklung war das Softwaretechnologie-Praktikum für mich eher eine Möglichkeit, mehr in Spring und Thymeleaf reinzuschauen, womit ich zuvor noch nicht gearbeitet habe. Die Erfahrung, die ich durch meinen Job habe, konnte ich im Praktikum sowohl in der Entwicklung, als auch in der Rolle des Teamchefs gut nutzen.

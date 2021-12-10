@@ -1,0 +1,40 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" style="height: 100%">
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />		
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />	
+		<title th:text="#{buttons.login}">TITLE</title>
+	</head>
+	<body class="bg-light" style="height: 90%">
+		<div th:include="navigation :: navigation"></div>
+
+		<div class="container w-100 h-100">
+   			<div class="row justify-content-center align-items-center h-100">
+				<div class="card mb-4">
+					<div class="card-header">
+						<h3 th:text="#{buttons.login}">TITLE</h3>
+					</div>
+					<div class="card-body">
+						<form class="form" method="post" th:action="@{/login}">
+							<div class="form-group">
+								<label for="username" th:text="#{users.email}">MAIL</label>
+								<input id="username" name="username" type="text" class="form-control" required />
+							</div>
+							<div class="form-group">
+								<label for="password" th:text="#{users.password}">PASSWORD</label>
+								<input id="password" name="password" type="password" class="form-control" required />
+							</div>
+							<button type="submit" class="btn btn-primary btn-lg float-right" th:text="#{buttons.login}">LOGIN</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div th:include="footer :: footer"></div>
+	</body>
+</html>

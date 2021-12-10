@@ -1,0 +1,33 @@
+= Cross-Testing Feedback
+
+__Durchführende Gruppe: 33__
+__Anwendung von Gruppe: 35__
+
+== Getestetes System
+Welche Aufgabe/Problemstellung löst die Anwendung.
+
+== Fehler-Report
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="header"]
+|===
+|Pfad |Parameter |Beschreibung |Rückgabe
+| Mitarbeiter |Gehalt | Man kann 0 eingeben. | Keine Rückgabe, doch das sollte eigentlich nicht möglich sein. |
+|===
+
+== Sonstiges
+=== 1. Optik der Anwendung:
+
+Die Optik der Anwendung entspricht insgesamt der im Pflichtenheft gesetzten GUI. Es sind einige Abweichungen bei der grafischen Oberfläche sichtbar, allerdings sind diese meist eine Verbesserung des geplanten Designs. Bei den Buchungen ist der Bezahlstatus als schlichter Text dargestellt, ohne die im Pflichtenheft gezeigte farbliche Abhebung.
+
+=== 2. Fehlende Features:
+
+Die Kunden sind nicht über die Kundennummer findbar.
+
+=== 3. Interaktion mit der Anwendung:
+
+Die Nutzung der Anwendung ist simpel und zugänglich, wobei der Login mit der E-Mail Adresse etwas umständlich scheint.
+Bestätigungsdialoge vor der Löschung eines Mitarbeiters sind eine gute Absicherung.
+
+== Verbesserungsvorschläge
+
+Mitarbeiter können, soweit erkennbar nur im akutellen Monat eingestellt werden. Es wäre ratsam eine Möglichkeit zu haben Mitarbeiter zu einem bestimmten zukünftigen Monat einzustellen.

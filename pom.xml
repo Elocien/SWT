@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>swt19w35</artifactId>
+	<version>1.0.0.BUILD-SNAPSHOT</version>
+
+	<name>swt19w35</name>
+
+	<parent>
+		<groupId>de.tudresden.inf.st.lab</groupId>
+		<artifactId>st-lab-parent</artifactId>
+		<version>2.2.0.RELEASE</version>
+	</parent>
+
+	<properties>
+		<java.version>11</java.version>
+		<salespoint.version>7.2.1.RELEASE</salespoint.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>spring-libs-milestone</id>
+			<url>https://repo.spring.io/libs-milestone</url>
+		</repository>
+		<repository>
+			<id>salespointframework</id>
+			<url>https://www.st.inf.tu-dresden.de/SalesPoint/repository</url>
+		</repository>
+		<repository>
+			<id>itext-releases</id>
+			<url>https://repo.itextsupport.com/releases</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-libs-milestone</id>
+			<url>https://repo.spring.io/libs-milestone</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itext7-core</artifactId>
+			<version>RELEASE</version>
+			<type>pom</type>
+		</dependency>
+	</dependencies>
+
+</project>

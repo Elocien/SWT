@@ -1,0 +1,27 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  style="height: 100%">
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />		
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />		
+		<title>Start</title>
+	</head>
+	<body class="bg-light" style="height: 90%">
+		<div th:include="navigation :: navigation"></div>
+		
+		<div class="container w-100 h-100">
+   			<div class="row justify-content-center align-items-center h-100">
+   				<div>
+   					<img th:src="@{/resources/img/paris.jpg}" class="img-fluid" />
+   					<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"><h1 class="text-light" style="font-size: 5em;">TOURABLE</h1></div>
+   					
+   				</div>
+			</div>
+		</div>
+		
+		<div th:include="footer :: footer"></div>
+	</body>
+</html>

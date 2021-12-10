@@ -1,0 +1,55 @@
+= Protokoll Gruppe 35
+
+Treffen am 25.11.2019
+
+Ort:      Vor APB 2074 +
+Beginn:   15:00 Uhr +
+Ende:     15:30 Uhr 
+
+__Schriftführer:__
+Florian Richter +
+
+*Nächstes Treffen:* +
+02.12.2019 16:30, Raum APB 2101 zur Zwischenpräsentation
+
+__Teilnehmer:__
+
+* Julian (Tutor)
+* Robert
+* Pascal (Teamleiter)
+* Leon
+* Lucian
+* Florian (Protokollant)
+
+== Bemerkungen
+* `prototyp` ist auf `master` gemerged
+* Entwicklung erfolgt auf `develop` branch
+* Tests beim Programmieren mit schreiben und nicht vor sich her schieben
+* Bilder nur mit Creative Commons Lizenz
+** z.B. von https://unsplash.com/[unsplash] oder https://pixabay.com/de/[pixabay]
+* `@Autowired` eher nur bei Tests benutzen
+** wurde bei uns schon vorher nur in Tests verwendet
+
+== Retrospektive des letzten Sprints
+* gutes Tempo, weiter so
+
+== Aktueller Stand
+* Stadt als Entity angelegt
+** Erzeugung / Verwaltung als Unterpunkt in der Navigation
+* Unterkunft -> Stadtname anzeigen funktioniert nicht
+** DataInitializer mit `@Order()` in richtige Reihenfolge bringen
+** Mehr testen auf nicht `null`
+** Es reicht ein Bild pro Unterkunft
+*User
+** login als Startseite möglich
+** email muss Benutzerkennung sein
+* Buchung erstellen
+** mehr in Unterseiten aufsplitten
+** dafür Sessionattribute verwenden
+
+== Planung des nächsten Sprints
+* Zwischenpräsentation
+** am 2. Dez. 2019 um 16:30
+** Julian schickt eine Email mit genauerern Infos
+* Weiter arbeiten
+* an Tests denken

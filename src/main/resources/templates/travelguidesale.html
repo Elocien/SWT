@@ -1,0 +1,85 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap-select.min.css}" />	
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+		<title th:text="#{travelguides.sale}">TITLE</title>
+	</head>
+	<body class="bg-light">
+		<div th:include="navigation :: navigation"></div>
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="pb-2 mt-4 mb-2">
+						<h1 th:text="#{travelguides.sale}">TITLE</h1>
+					</div>
+					<div class="row mt-4">
+						<div class="col-lg-4">
+							<form id="form" method="post" th:action="@{/travelguides/sale}">
+								<div class="form-group">
+									<label for="city" th:text="#{travelguides.city}">CITY</label>
+									<select id="city" th:name="city" class="form-control selectpicker" data-live-search="true" required>
+										<option th:each="city : ${cityList}" th:value="${city.name}" th:text="${city.name}" />
+									</select>
+								</div>
+								<button type="submit" class="btn btn-primary" th:text="#{buttons.search}">SEARCH</button>
+							</form>
+						</div>
+						<div class="col-lg-8">
+							<table class="table table-striped" id="travelguide-table" th:if="${travelguideList != null and !travelguideList.empty}">
+								<thead>
+									<tr>
+										<th th:text="#{travelguides.name}">NAME</th>
+										<th th:text="#{travelguides.city}">CITY</th>
+										<th th:text="#{travelguides.price}">PRICE</th>
+									</tr>
+								</thead>
+								<tbody style="cursor: pointer">
+									<tr th:each="travelguide : ${travelguideList}" th:data-id="${travelguide.id}">
+										<td th:text="${travelguide.name}">NAME</td>
+										<td th:text="${travelguide.city.name}">CITY</td>
+										<td th:text="|EUR ${#numbers.formatDecimal(travelguide.price, 1, 2, 'COMMA')}">PRICE</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="h-100 d-flex justify-content-center align-items-center" th:if="${travelguideList != null and travelguideList.empty}">
+								<div class="card bg-light">
+									<div class="card-header" th:text="#{bookings.noMatches}">NO_MATCHES</div>
+									<div class="card-body">
+										<p class="card-text" th:text="#{bookings.noMatchingTravelguides}">NO_MATCHING_TRAVELGUIDES</p>
+									</div>
+								</div>
+							</div>
+						</div>	
+					</div>
+					<hr>
+					<div>
+						<form method="post" th:action="@{/travelguides/validateSale}" style="display: inline;">
+							<input id="saleId" name="saleId" type="hidden" value="-1" />
+							<button id="saleButton" type="submit" class="btn btn-primary" th:text="#{travelguides.sell}" disabled>SELL</button>
+						</form>
+						<a class="btn btn-secondary" th:href="@{/travelguides}" th:text="#{buttons.back}">BACK</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script th:src="@{/resources/js/vendor/bootstrap-select.min.js}"></script>
+
+		<script>
+			$("#travelguide-table tbody tr").click(function() {
+			   $(this).addClass('table-primary').siblings().removeClass('table-primary');
+			   document.getElementById('saleId').value = $(this).data('id');
+			   document.getElementById('saleButton').disabled = false;
+			});
+		</script>
+		
+		<div th:include="footer :: footer"></div>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2019/20
+
+**Von: Florian Richter**
+
+**Gruppe: 35**
+
+== Was habe ich gelernt?
+* Den Verlauf eines Softwareprojekts von Kundengespräch bis Fertigstellung
+* Programmieren im Team
+* Nutzung von Thymeleaf
+* Nutzung des Spring Framework
+* mehr Erfahrung im Umgang mit Javadocs erlangt
+* Nutzung von Lambda-Funktionen in Java
+* Einblick in itextpdf
+* Salespoint ist nicht immer nützlich
+
+== Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+* Treffen mit unterschiedlichen Studiengängen und Fachsemestern sind schwierig
+(haben nur einen Termin pro Woche hinbekommen, wo jeder konnte)
+* nur durch gute Kommunikation gibt es gute Teamarbeit
+** auch klare Regeln für git-Nutzung und Codingstyle sind wichtig
+* ein develop-Branch und ein master branch reicht, wenn jeder an seinem Package arbeitet und die Regeln befolgt (nur build-fähiges pushen und gepusht wird Code nur auf develop)
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+* Salespoint ist entweder zu unflexibel oder hat auf der anderen Seite zu wenig Features, dazu meiner Meinung nach unintuitiv
+** z.B. kann man den Nutzernamen nicht ändern (was relativ einfach möglich sein sollte (neuer Nutzername(-kennung) sollte nicht
+vergeben sein und PW zur Absicherung, und dazu eine ID für eindeutige Zuordnung über Namensänderungen hinaus))
+** Accountancy zu allgemein, zu wenig Features
+*** Wir haben Invoices welche den Entries entsprechen, die wir aber auch nach ihren Typen sortiern/filtern wollen
+**** z.B. nach Revenue oder nach allen Entries die durch eine Buchung entstanden sind
+** BusinessTime macht Unittests kaputt, wenn man Objekten an unterster Stelle also auf Datenbankeintragebene ein Datum verpassen will
+** Bei Salespoint braucht man bei manchen Sachen länger zu Verstehen, was einzelne Packages machen, als wenn man sie selbst einfacher und angepasst auf die Aufgabenstellung programmiert
+* Spring macht das Arbeiten deutlich einfacher, da man sich um weniger kümmern muss
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+* Gruppen sollten nur aus Leuten des gleichen Studiengangs und des gleichen Fachsemesters bestehen
+** und es sollte möglich sein sein Team selbst zusammenzustellen
+* Salespoint und Spring Framework Vorstellungen sollten beide in der 2. Woche stattfinden, da man sonst bei den Features in der 3. Woche
+zu wenig Zeit hat, da noch das Pflichtenheft mit erstellt werden muss.
+
+== Feedback für den Tutor
+* gute Kommunikation
+* könnte zu manchen Treffen mehr Zeit einplanen (Offene Fragen zur Aufgabenstellung)
+* hat uns gut durchs Projekt geleitet
+
+== Sonstiges und Anmerkungen

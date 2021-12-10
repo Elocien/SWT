@@ -1,0 +1,93 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />		
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />		
+		<title th:text="#{customers.details}">TITLE</title>
+	</head>
+	<body class="bg-light">
+		<div th:include="navigation :: navigation"></div>
+		
+		<div class="container">
+			<div class="modal" id="deleteModal">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header bg-danger">
+								<h4 class="modal-title" th:text="#{customers.modal.deletion.title}">DELETION_TITLE</h4>
+								<button type="button" class="close" data-dismiss="modal">×</button>
+							</div>
+							<div class="modal-body">
+								<p th:text="#{customers.modal.deletion.content}"></p>
+							</div>
+							<div class="modal-footer">
+								<form class="mr-auto col-sm-6" th:action="@{/customers/delete}" method="post">
+									<input type="hidden" name="id" th:value="${customer.id}" />
+									<input type="submit" class="btn btn-primary btn-block" th:value="#{buttons.confirm}" />
+								</form>
+								<button type="button" class="btn btn-secondary btn-block col-sm-6" th:text="#{buttons.abort}" data-dismiss="modal">ABORT</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="pb-2 mt-4 mb-2">
+						<h1 th:text="#{customers.details}">TITLE</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 mt-4">
+					<form id="form" method="post" th:action="@{/customers/details}" th:object="${form}">
+						<dl class="row">
+							<dt class="col-sm-5" th:text="#{customers.id}">ID</dt>
+							<dd class="col-sm-7" th:text="${customer.id}">VALUE</dd>
+							
+							<dt class="col-sm-5" th:text="#{customers.name}">NAME</dt>
+							<dd class="col-sm-7" th:text="${customer.name}">VALUE</dd>
+							
+							<dt class="col-sm-5" th:text="#{customers.address}">ADDRESS</dt>
+							<dd class="col-sm-7" th:text="${customer.address}">VALUE</dd>
+							
+							<dt class="col-sm-5" th:text="#{customers.email}">EMAIL</dt>
+							<dd class="col-sm-7" th:text="${customer.email}">VALUE</dd>
+							
+							<dt class="col-sm-5" th:text="#{customers.phone}">PHONE</dt>
+							<dd class="col-sm-7" th:text="${customer.phone}">VALUE</dd>
+						</dl>
+					</form>
+				</div>
+				<div class="col-lg-8 mt-4">
+					<table class="table table-striped" th:if="${allBookings != null and !allBookings.empty}">
+						<thead class="thead-dark">
+							<tr>
+								<th th:text="#{bookings.timeOfBooking}">BOOKING_DATE</th>
+								<th th:text="#{bookings.accommodationInfos}">ACCOMMODATION_DETAILS</th>
+								<th th:text="#{bookings.status}">STATUS</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="booking : ${allBookings}" style="cursor: pointer" th:onclick="'window.location.href = \'' + @{/bookings/details?id={id}(id=${booking.id})} + '\''">
+								<td th:text="${#temporals.format(booking.timeOfBooking, 'dd.MM.yyyy HH:mm')}">BOOKING_DATE</td>
+								<td th:text="${booking.accommodation.city.name} + ', ' + ${booking.accommodation.name}">ACCOMMODATION_DETAILS</td>
+								<td th:if="${{booking.status}} == OPEN"><span class="badge badge-info" th:text="#{bookings.status.OPEN}" >STATUS_OPEN</span></td>
+								<td th:if="${{booking.status}} == PAID"><span class="badge badge-success" th:text="#{bookings.status.PAID}" >STATUS_PAID</span></td>
+								<td th:if="${{booking.status}} == CANCELLED"><span class="badge badge-warning" th:text="#{bookings.status.CANCELLED}" >STATUS_CANCELLED</span></td>
+								<td th:if="${{booking.status}} == UNPAID"><span class="badge badge-danger" th:text="#{bookings.status.UNPAID}" >STATUS_UNPAID</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>							
+			<a class="btn btn-primary" th:href="@{/customers/edit?id={id}(id=${customer.id})}" th:text="#{buttons.edit}">EDIT</a>
+			<a class="btn btn-secondary" th:href="@{/customers}" th:text="#{buttons.back}">BACK</a>			
+			<button type="button" class="btn btn-danger float-right" sec:authorize="hasAnyRole('BOSS', 'USER')" data-toggle="modal" data-target="#deleteModal" th:text="#{buttons.delete}" th:if="${deleteFlag} == true">DELETE</button>
+		</div>
+		
+		<div th:include="footer :: footer"></div>
+	</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />		
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />		
+		<title th:text="#{accounting.dynamicAccounting}">TITLE</title>
+	</head>
+	<body class="bg-light">
+		<div th:include="navigation :: navigation"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="pb-2 mt-4 mb-2">
+						<h1 th:text="#{accounting.dynamicAccounting}">TITLE</h1>
+					</div>
+					<div class="mt-4">
+						<a class="btn btn-secondary float-right" th:href="@{/accounting}" th:text="#{buttons.back}">BACK</a>
+						<p th:text="#{accounting.from} + ': ' + ${#temporals.format(fromDate, 'dd MMM yyyy')}"></p>
+						<p th:text="#{accounting.to} + ': ' + ${#temporals.format(toDate, 'dd MMM yyyy')}"></p>
+					</div>
+					
+					<div class="mt-4">
+						<table class="table table-bordered">
+							<thead class="thead-dark">
+								<tr>
+									<th th:text="#{accounting.transactionCategory}">CATEGORY</th> 
+									<th th:text="#{accounting.revenue}">TOTAL_REVENUE</th>
+									<th th:text="#{accounting.expense}">TOTAL_EXPENSE</th>
+									<th th:text="#{accounting.profits}">TOTAL_PROFITS</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="entry, iterStat : ${overviewTable}" th:if="${iterStat.index < 3}">
+									<td th:text="#{'accounting.transactionCategory.'+${entry.name}}">CATEGORY</td>
+									<td th:text="|EUR ${#numbers.formatDecimal(entry.totalIncome, 1, 2, 'COMMA')}">TOTAL_REVENUE</td>
+									<td th:text="|EUR ${#numbers.formatDecimal(entry.totalExpense, 1, 2, 'COMMA')}">TOTAL_EXPENSE</td>
+									<td th:text="|EUR ${#numbers.formatDecimal(entry.totalProfit, 1, 2, 'COMMA')}">TOTAL_PROFITS</td>
+								</tr>
+							</tbody>
+							<thead class="thead-light">
+								<tr>
+									<th th:text="#{'accounting.transactionCategory.'+${overviewTable[3].name}}">CATEGORY</th> 
+									<th th:text="|EUR ${#numbers.formatDecimal(overviewTable[3].totalIncome, 1, 2, 'COMMA')}">TOTAL_REVENUE</th>
+									<th th:text="|EUR ${#numbers.formatDecimal(overviewTable[3].totalExpense, 1, 2, 'COMMA')}">TOTAL_EXPENSE</th>
+									<th th:text="|EUR ${#numbers.formatDecimal(overviewTable[3].totalProfit, 1, 2, 'COMMA')}">TOTAL_PROFITS</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<hr>
+					<div class="pt-2 mt-2 mb-0">
+						<h3 th:text="#{accounting.allInvoices}">TITLE</h3>
+					</div>
+					<div class="mt-8">
+						<table class="table table-striped table-sm">
+							<thead class="thead-dark">
+								<tr>
+									<th th:text="#{accounting.date}">DATE</th> 
+									<th th:text="#{accounting.transactionCategory}">CATEGORY</th>
+									<th th:text="#{accounting.description}">DESC</th>
+									<th th:text="#{accounting.amount}">AMOUNT</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="invoice : ${invoiceList}">
+									<td th:text="${#temporals.format(invoice.date, 'dd.MM.yyyy HH:mm')}">DATE</td>
+									<td th:text="#{'accounting.transactionCategory.'+${{invoice.transactionCategory}}}">CATEGORY</td>
+									<td th:text="${invoice.description}">DESC</td>
+									<td th:text="|EUR ${#numbers.formatDecimal(invoice.value, 1, 2, 'COMMA')}">AMOUNT</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div th:include="footer :: footer"></div>
+	</body>
+</html>

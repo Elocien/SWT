@@ -1,0 +1,182 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap-stepper.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap-select.min.css}" />	
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/daterangepicker.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+		<title th:text="#{bookings.create}">TITLE</title>
+	</head>
+	<body class="d-flex flex-column min-vh-100 bg-light">
+		<div th:include="navigation :: navigation"></div>
+		
+		<div class="container flex-grow-1 flex-shrink-0 py-5">
+			<div class="mb-5 p-4 bg-white shadow-sm">
+				<h1 th:text="#{bookings.create}">TITLE</h1>
+				<div class="bs-stepper">
+					<div class="bs-stepper-header" role="tablist">
+						<div class="step active">
+							<div class="step-trigger">
+								<span class="bs-stepper-circle">1</span>
+								<span class="bs-stepper-label" th:text="#{bookings.chooseAccommodation}">CHOOSE_ACCOMMODATION</span>
+							</div>
+						</div>
+						<div class="line"></div>
+						<div class="step">
+							<div class="step-trigger">
+								<span class="bs-stepper-circle">2</span>
+								<span class="bs-stepper-label" th:text="#{bookings.chooseCustomer}">CHOOSE_CUSTOMER</span>
+							</div>
+						</div>
+						<div class="line"></div>
+						<div class="step">
+							<div class="step-trigger">
+								<span class="bs-stepper-circle">3</span>
+								<span class="bs-stepper-label" th:text="#{bookings.chooseTravelguide}">CHOOSE_TRAVELGUIDE</span>
+							</div>
+						</div>
+						<div class="line"></div>
+						<div class="step">
+							<div class="step-trigger">
+								<span class="bs-stepper-circle">4</span>
+								<span class="bs-stepper-label" th:text="#{bookings.overview}">OVERVIEW</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="mb-5 p-4 bg-white shadow-sm">
+				<div class="col-lg-12">
+					<form id="form" method="post" th:action="@{/bookings/create}" th:object="${accommodationForm}">
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label for="city" th:text="#{accommodations.city}">CITY</label>
+								<select id="city" th:name="city" class="form-control selectpicker" data-live-search="true" required>
+									<option th:each="city : ${cityList}" th:value="${city.name}" th:text="${city.name}" th:selected="${city.name == accommodationForm?.city}" />
+								</select>
+							</div>
+							<div class="form-group col-md-4">
+								<label for="type" th:text="#{accommodations.type}">TYPE</label>
+								<select id="type" th:name="type" class="form-control selectpicker" data-live-search="true" required>
+									<option th:each="type : ${T(tourable.accommodation.AccommodationType).values()}" th:value="${{type}}" th:text="#{'accommodations.type.'+${{type}}}" th:selected="${type == accommodationForm?.type}" />
+								</select>
+							</div>
+							<div class="form-group col-md-4">
+								<label for="location" th:text="#{accommodations.location}">LOCATION</label>
+								<select id="location" th:name="location" class="form-control selectpicker" data-live-search="true" required>
+									<option th:each="location : ${T(tourable.accommodation.AccommodationLocation).values()}" th:value="${{location}}" th:text="#{'accommodations.location.'+${{location}}}" th:selected="${location == accommodationForm?.location}" />
+								</select>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label for="dateRange" th:text="#{bookings.travelPeriod}">TRAVEL_PERIOD</label>
+								<input id="dateRange" th:name="dateRange" th:value="${accommodationForm?.dateRange}" class="form-control" type="text" required />
+							</div>
+							<div class="form-group col-md-4">
+								<label>&nbsp;</label>
+								<button type="submit" class="btn btn-primary" style="display:block;" th:text="#{buttons.search}">SEARCH</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<hr>
+				<div class="col-lg-12">
+					<p class="pb-2" th:text="#{bookings.noMatchingAccommodations}" th:if="${usingAlternativesFlag != null}">NO_MATCHING_ACCOMMODATIONS</p>
+					<table class="table table-striped" id="accommodation-table" th:if="${accommodationList != null and !accommodationList.empty}">
+						<thead class="thead-dark">
+							<tr>
+								<th th:text="#{accommodations.name}">NAME</th>
+								<th th:text="#{accommodations.city}">CITY</th>
+								<th th:text="#{accommodations.type}">TYPE</th>
+								<th th:text="#{accommodations.location}">LOCATION</th>
+								<th th:text="#{accommodations.roomNumber}">ROOM_NR</th>
+								<th th:text="#{accommodations.bedNumber}">BED_NR</th>
+								<th th:text="#{bookings.price}">TOTAL_PRICE</th>
+								<th th:text="#{bookings.startDate}">START_DATE</th>
+								<th th:text="#{bookings.endDate}">END_DATE</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="accommodation : ${accommodationList}" th:data-id="${accommodation.id}" th:data-daterange="${#temporals.format(accommodation.from, 'yyyy-MM-dd') + ' - ' + #temporals.format(accommodation.to, 'yyyy-MM-dd')}" style="cursor: pointer" data-toggle="tooltip" th:title="'<img class=\'img-thumbnail\' src=\'data:image/jpeg;base64,' + ${accommodation.image} + '\' />'">
+								<td th:text="${accommodation.name}">NAME</td>
+								<td th:text="${accommodation.city.name}">CITY</td>
+								<td th:class="${accommodation.type != accommodationForm.type}? text-danger" th:text="#{'accommodations.type.'+${{accommodation.type}}}">TYPE</td>
+								<td th:class="${accommodation.location != accommodationForm.location}? text-danger" th:text="#{'accommodations.location.'+${{accommodation.location}}}">LOCATION</td>
+								<td th:text="${accommodation.roomNumber}">ROOM_NR</td>
+								<td th:text="${accommodation.bedNumber}">BED_NR</td>
+								<td th:text="|EUR ${#numbers.formatDecimal(accommodation.totalPrice, 1, 2, 'COMMA')}">TOTAL_PRICE</td>
+								<td th:class="${(#temporals.format(accommodation.from, 'yyyy-MM-dd') + ' - ' + #temporals.format(accommodation.to, 'yyyy-MM-dd')) != accommodationForm.dateRange}? text-danger" th:text="${#temporals.format(accommodation.from, 'dd.MM.yyyy')}">FROM</td>
+								<td th:class="${(#temporals.format(accommodation.from, 'yyyy-MM-dd') + ' - ' + #temporals.format(accommodation.to, 'yyyy-MM-dd')) != accommodationForm.dateRange}? text-danger" th:text="${#temporals.format(accommodation.to, 'dd.MM.yyyy')}">TO</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="h-100 d-flex justify-content-center align-items-center" th:if="${accommodationList != null and accommodationList.empty}">
+						<div class="card bg-light">
+							<div class="card-header" th:text="#{bookings.noMatches}">NO_MATCHES</div>
+							<div class="card-body">
+								<p class="card-text" th:text="#{bookings.noCloseAccommodations}">NO_CLOSE_ACCOMMODATIONS</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="mb-5 p-4 bg-white shadow-sm">
+				<form method="post" th:action="@{/bookings/create}" style="display: inline;">
+					<input id="accommodationId" name="accommodationId" type="hidden" value="-1" />
+					<input id="bookingDateRange" name="bookingDateRange" type="hidden" th:value="-1" />
+					<button id="formButton" type="submit" class="btn btn-primary" th:text="#{buttons.continue}" disabled>CONTINUE</button>
+				</form>
+				<form method="post" th:action="@{/bookings/create/abort}" style="display: inline;">
+					<button id="backButton" type="submit" class="btn btn-secondary" th:text="#{buttons.abort}">ABORT</button>
+				</form>
+			</div>
+		</div>
+		
+		<script th:src="@{/resources/js/vendor/bootstrap-select.min.js}"></script>
+		<script th:src="@{/resources/js/vendor/moment.min.js}"></script>
+		<script th:src="@{/resources/js/vendor/daterangepicker.min.js}"></script>
+		
+		<script>
+			$("#accommodation-table tbody tr").click(function() {
+			   $(this).addClass('table-primary').siblings().removeClass('table-primary');
+			   document.getElementById('accommodationId').value = $(this).data('id');
+			   document.getElementById('bookingDateRange').value = $(this).data('daterange');
+			   document.getElementById('formButton').disabled = false;
+			});
+			
+			$(document).ready(function() {
+				if ($('input[name="dateRange"]').val().length == 0) {
+					$('input[name="dateRange"]').daterangepicker({
+						startDate: moment().add(1, 'day'),
+						endDate: moment().add(2, 'day'),
+						locale : {
+							format : 'YYYY-MM-DD'
+						}
+					});
+				} else {
+					$('input[name="dateRange"]').daterangepicker({
+						locale : {
+							format : 'YYYY-MM-DD'
+						}
+					});
+				}
+			});
+			
+			$('tr[data-toggle="tooltip"]').tooltip({
+			    animated: 'fade',
+			    placement: 'right',
+			    html: true
+			});
+		</script>
+		
+		<div th:include="footer :: footer"></div>
+	</body>
+</html>

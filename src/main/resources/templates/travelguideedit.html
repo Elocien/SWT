@@ -1,0 +1,50 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />	
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap-select.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />		
+		<title th:text="#{travelguides.edit}">TITLE</title>
+	</head>
+	<body class="bg-light">
+		<div th:include="navigation :: navigation"></div>
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="pb-2 mt-4 mb-2">
+						<h1 th:text="#{travelguides.edit}">TITLE</h1>
+					</div>
+					<div class="col-lg-4 mt-4">
+						<form id="form" method="post" th:action="@{/travelguides/edit?id={id}(id=${travelguide.id})}" th:object="${form}">
+							<div class="form-group">
+								<label for="name" th:text="#{travelguides.name}">NAME</label>
+								<input id="name" th:name="name" th:value="${travelguide.name}" type="text" class="form-control" required />
+							</div>
+							<div class="form-group">
+								<label for="city" th:text="#{travelguides.city}">CITY</label>
+								<select id="city" th:name="city" class="form-control selectpicker" data-live-search="true" required>
+									<option th:each="city : ${cityList}" th:value="${city.name}" th:text="${city.name}" th:selected="${city == travelguide.city}" />
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="price" th:text="#{travelguides.price}">PRICE</label>
+								<input id="price" th:name="price" th:value="${travelguide.price}" type="number" step="0.01" min="0.01" class="form-control" required />
+							</div>
+							<button type="submit" class="btn btn-primary" th:text="#{buttons.submit}">SUBMIT</button>
+							<a class="btn btn-secondary" th:href="@{/travelguides/details?id={id}(id=${travelguide.id})}" th:text="#{buttons.back}">BACK</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script th:src="@{/resources/js/vendor/bootstrap-select.min.js}"></script>
+		
+		<div th:include="footer :: footer"></div>
+	</body>
+</html>

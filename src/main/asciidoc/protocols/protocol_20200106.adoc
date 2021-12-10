@@ -1,0 +1,58 @@
+= Protokoll Gruppe 35
+
+Treffen am 06.01.2020
+
+Ort:      Vor APB 2074 +
+Beginn:   14:50 Uhr +
+Ende:     15:30 Uhr 
+
+__Schriftführer:__
+Florian Richter +
+
+*Nächstes Treffen:* +
+04.11.2019, 14:50 Uhr, Vor APB 2074
+
+__Teilnehmer:__
+
+* Julian (Tutor)
+* Robert
+* Pascal (Teamleiter)
+* Leon
+* Lucian
+* Florian (Protokollant)
+
+== Bemerkungen
+* Crosstesting Feedback Auswertung
+** Gehalt kann null sein
+*** ist in Ordnung, sollte nur nicht negativ sein (haben wir selber noch entdeckt)
+** Filter nach Kundennummer muss implementiert werden
+** Emailadresse bleibt als Login erhalten (war ja klare Vorgabe vom Pflichtenheft)
+** Verbesserungsvorschlag muss nicht unbedingt sein
+* F316 kann entfernt werden, im Dev_doc dazu unter Offene Punkte eine Notiz dafür schreiben
+* Kann-Kriterium Manuelles Löschen eines Kunden mit implementieren
+
+== Retrospektive des letzten Sprints
+* Crosstesting von uns:
+** war gut
+
+
+== Aktueller Stand
+* ist super
+** alle Funktionellen Anforderungen und Usecases implementiert
+** bisher beste Testabdeckung
+
+== Planung des nächsten Sprints
+* Kundenwunsch:
+** Buchungsrechungen als PDF herunterladen / anzeigen
+** PDF enthält die Typischen Daten
+*** Status der Buchung
+*** Daten über Kunde
+*** Daten über Citytours
+*** Daten der Buchung
+
+* Abschlusspräsentation
+** 6.DS am 20. Januar im Raum wo wir schon zur Zwischenpräsentation waren
+** 10/10/10 Minuten für Präsentation, Demo und Fragen
+*** Rollenspiel für Demo (Kunde, Boss, Mitarbeiter)
+** Inhalte ähnlich wie Zwischenpräsentation
+*** Usecase- und Package-diagramm mitreinnehmen

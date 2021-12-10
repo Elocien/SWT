@@ -1,0 +1,89 @@
+= Protokoll Gruppe 35
+
+Treffen am 28.10.2019
+
+Ort:      Vor APB 2074 +
+Beginn:   14:50 Uhr +
+Ende:     15:35 Uhr 
+
+__Schriftführer:__
+
+Florian Richter +
+
+*Nächstes Treffen:* +
+04.11.2019, 14:50 Uhr, Vor APB 2074
+
+__Teilnehmer:__
+
+* Julian (Tutor/Kunde)
+* Robert
+* Pascal (Teamleiter)
+* Leon
+* Lucian
+* Florian (Protokollant)
+
+== Bemerkungen
+* Timetable ausfüllen nicht vergessen
+* Yafei ist schlecht erreichbar, nicht anwesend zu Gruppentreffen (auch informellen)
+
+== Retrospektive des letzten Sprints
+* Robert hat guestbook fertig & keine Probleme gehabt
+* Leon wollte den Aufgabenumfang der Bewertungsaufgabe nochmal genau wissen
+
+== Aktueller Stand
+* Zum Pflichtenheft
+** Im Kontextdiagramm kann unregistered user raus
+** Das Kontextdiagramm soll noch detailierter werden
+*** z.B. Bookingmanagement aufsplitten
+
+== Planung des nächsten Sprints
+* Pflichtenheft fertigstellen
+** können unter der Woche noch Feedback anfordern
+* Videoshop fertigstellen
+* Abgabe Sonntag 3.11.2019
+
+== Kundengespräch
+* Wieviel Zielorte gibt es bzw. welcher Art?
+** Nur Städte
+* Verschiedene Unterkunftkategorien durch Preis unterscheiden?
+** nur Kategorien einzutragen
+* Lage der Unterkunft durch Abstand vom Zentrum bestimmen?
+** Nur einzelne Kategorien eintragen
+* Unterkunftdaten
+** Preis, Beschreibung, Bild, Vermittlungsgebühr in %, Name, Stadt, Lage, Ausstattung (Art der Unterkunft)
+* Reisedauer in Stunden /Tagen?
+** Tage, von bis (nur Nächte zählen,eine Abreise und eine andere Anreise dürfen sich überschneiden)
+* Kundendaten:
+** Name, Adresse, Telefonnummer, Email
+** Kundennummer kann mit einfachem Zähler erstellt werden
+* Zahlung
+** Zahlungsmöglichkeiten nur per Häkchen/Menü bei Buchung auswählen
+** Bei Überweisung automatische Statusänderung der Buchung?
+*** Nein Mitarbeiter soll selbst Status ändern
+** Mahnung 3 Tage vor Reise verschicken (Automatisch / per Button-press alle anstehenden Mahnungen verschicken)
+** Bei keiner Zahlung bei Reiseantritt Unterkunft freigeben, Buchung in eigenen ungezahlten Zustand überführen
+** Kunde bekommt Buchungsbestätigung+ Rechnung als Email
+* Mehrere Reiseunterkünfte pro Buchung möglich?
+** nein
+* Buchungen editierbar?
+** nein, bei Falscheingabe Stornieren und neu eingeben
+
+* Personalverwaltung
+** Boss legt Mitarbeiter an
+** Boss kann Konten löschen
+** Daten zum Anlegen:
+*** Name, Adresse, Gehalt, Passwort, Email(gleichzeitig Benutzerkennung)
+** Boss kann Daten bearbeiten
+** Passwort nicht zurücksetzbar
+* Abrechungen:
+** Eingabe Datum von bis oder ausgewähltes Jahr/Monat
+** beinhaltet Einnahmen und Ausgaben
+* Brauchen wir Umsatz pro Mitarbeiter?
+** nein
+* Reiseführerverwaltung:
+** Wie kaufen?
+*** einfaches Häkchen bei Buchung, Rechnung aber getrennt
+*** außerhalb von Buchung, wobei nur ein Führer für Stadt auf einmal kaufbar (kein Warenkorb)
+*** Zahlung nur Bar
+** Daten von Reiseführer:
+*** Name, Stadt, Preis

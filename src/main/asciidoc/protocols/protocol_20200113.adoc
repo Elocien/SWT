@@ -1,0 +1,57 @@
+= Protokoll Gruppe 35
+
+Treffen am 13.01.2020
+
+Ort:      Vor APB 2074 +
+Beginn:   14:50 Uhr +
+Ende:     15:10 Uhr 
+
+__Schriftführer:__
+Florian Richter +
+
+*Nächstes Treffen:* +
+27.01.2020 zum Fragebogen auswerten
+
+__Teilnehmer:__
+
+* Julian (Tutor)
+* Robert
+* Pascal (Teamleiter)
+* Leon
+* Lucian
+* Florian (Protokollant)
+
+== Bemerkungen
+* Montag 20.01.2020 Abschlusspräsentation
+** 10/10/10 Minuten für Präsentation /Demo / offene Fragen
+** Präsentation:
+*** Projektverlauf
+*** Architektur
+*** Entwurfsentscheidungen
+*** Teamarbeit
+*** was gelernt
+** Demo:
+*** kleines Rollenspiel
+*** mit Kunde, Mitarbeiter, Boss
+*** Buchungsprozess + interessante Dinge
+** Diskussion:
+*** bei Gruppe 34 vermehrt Fragen stellen wegen Crosstesting
+
+* Deadline für Repo 17.01.2020 23:59:59
+** Doku:
+*** Arbeitszeiten berechnen
+*** Evaluationsbogen jeder für sich ausfüllen
+*** Anwenderdokumentation nicht benötigt
+
+* Einschreibung auf jExam offen
+
+== Retrospektive des letzten Sprints
+* Rechnungspdf sieht sehr gut aus
+
+== Planung des nächsten Sprints
+* Präsentation erstellen
+** Tourable mit mehr Datensätzen füllen
+* Evaluation bearbeiten
+* Entwicklerdokumentation updaten
+* Testcoverage weiter erhöhen
+* Bugs beheben

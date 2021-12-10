@@ -1,0 +1,94 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap-select.min.css}" />	
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />		
+		<title th:text="#{accommodations.edit}">TITLE</title>
+	</head>
+	<body class="bg-light">
+		<div th:include="navigation :: navigation"></div>
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="pb-2 mt-4 mb-2">
+						<h1 th:text="#{accommodations.edit}">TITLE</h1>
+					</div>
+					<div class="col-lg-4 mt-4">
+						<form id="form" method="post" th:action="@{/accommodations/edit?id={id}(id=${accommodation.id})}" th:object="${form}" enctype="multipart/form-data">
+							<div class="form-group">
+								<label for="name" th:text="#{accommodations.name}">NAME</label>
+								<input id="name" th:name="name" th:value="${accommodation.name}" type="text" class="form-control" required />
+							</div>
+							<div class="form-group">
+								<label for="city" th:text="#{accommodations.city}">CITY</label>
+								<select id="city" th:name="city" class="form-control selectpicker" data-live-search="true" required>
+									<option th:each="city : ${cityList}" th:value="${city.name}" th:text="${city.name}" th:selected="${city == accommodation.city}" />
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="description" th:text="#{accommodations.description}">DESC</label>
+								<textarea class="form-control" id="description" th:name="description" th:text="${accommodation.description}" rows="3" required></textarea>
+							</div>
+							<div class="form-group">
+								<label for="image" th:text="#{accommodations.image}">IMAGE_URL</label>
+								<div class="custom-file">
+									<input type="file" accept=".jpg, .jpeg" th:field="*{image}" class="custom-file-input" id="image" th:classappend="${#fields.hasErrors('image')}? is-invalid" />
+									<label class="custom-file-label" for="image" th:text="#{accommodations.image.chooseFile}">CHOOSE_FILE</label>
+									<div class="invalid-feedback" th:text="#{errors.fileNotImage}">FILE_IS_NOT_IMAGE</div>
+								</div>
+								<div class="invalid-feedback" th:text="#{errors.fileNotImage}">FILE_IS_NOT_IMAGE</div>
+							</div>
+							<div class="form-group">
+								<label for="price" th:text="#{accommodations.price}">PRICE</label>
+								<input id="price" th:name="price" th:value="${accommodation.price}" type="number" step="0.01" min="0.01" class="form-control" required />
+							</div>
+							<div class="form-group">
+								<label for="bedNumber" th:text="#{accommodations.bedNumber}">BEDNO</label>
+								<input id="bedNumber" th:name="bedNumber" th:value="${accommodation.bedNumber}" type="number" step="1.0" min="1" class="form-control" required />
+							</div>
+							<div class="form-group">
+								<label for="roomNumber" th:text="#{accommodations.roomNumber}">ROOMNO</label>
+								<input id="roomNumber" th:name="roomNumber" th:value="${accommodation.roomNumber}" type="number" step="1.0" min="1" class="form-control" required />
+							</div>
+							<div class="form-group">
+								<label for="provision" th:text="#{accommodations.provision}">PROVISION</label>
+								<input id="provision" th:name="provision" th:value="${accommodation.provision}" type="number" step="0.01" min="0.01" max="1.00" class="form-control" required />
+							</div>
+							<div class="form-group">
+								<label for="type" th:text="#{accommodations.type}">TYPE</label>
+								<select id="type" th:name="type" class="form-control selectpicker" data-live-search="true" required>
+									<option th:each="type : ${T(tourable.accommodation.AccommodationType).values()}" th:value="${{type}}" th:text="#{'accommodations.type.'+${{type}}}"  th:selected="${type == accommodation.type}" />
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="location" th:text="#{accommodations.location}">LOCATION</label>
+								<select id="location" th:name="location" class="form-control selectpicker" data-live-search="true" required>
+									<option th:each="location : ${T(tourable.accommodation.AccommodationLocation).values()}" th:value="${{location}}" th:text="#{'accommodations.location.'+${{location}}}" th:selected="${location == accommodation.location}" />
+								</select>
+							</div>
+
+							<button type="submit" class="btn btn-primary" th:text="#{buttons.submit}">SUBMIT</button>
+							<a class="btn btn-secondary" th:href="@{/accommodations/details?id={id}(id=${accommodation.id})}" th:text="#{buttons.back}">BACK</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script th:src="@{/resources/js/vendor/bootstrap-select.min.js}"></script>
+		
+		<script>
+            $('#inputGroupFile01').on('change', function() {
+                $(this).next('.custom-file-label').html($(this).val().replace('C:\\fakepath\\', ""));
+            })
+        </script>
+		
+		<div th:include="footer :: footer"></div>
+	</body>
+</html>

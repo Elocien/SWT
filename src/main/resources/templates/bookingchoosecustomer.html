@@ -1,0 +1,113 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap-stepper.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+		<title th:text="#{bookings.create}">TITLE</title>
+	</head>
+	<body class="d-flex flex-column min-vh-100 bg-light">
+		<div th:include="navigation :: navigation"></div>
+		
+		<div class="container flex-grow-1 flex-shrink-0 py-5">
+			<div class="mb-5 p-4 bg-white shadow-sm">
+				<h1 th:text="#{bookings.create}">TITLE</h1>
+				<div class="bs-stepper">
+					<div class="bs-stepper-header" role="tablist">
+						<div class="step">
+							<div class="step-trigger">
+								<span class="bs-stepper-circle">1</span>
+								<span class="bs-stepper-label" th:text="#{bookings.chooseAccommodation}">CHOOSE_ACCOMMODATION</span>
+							</div>
+						</div>
+						<div class="line"></div>
+						<div class="step active">
+							<div class="step-trigger">
+								<span class="bs-stepper-circle">2</span>
+								<span class="bs-stepper-label" th:text="#{bookings.chooseCustomer}">CHOOSE_CUSTOMER</span>
+							</div>
+						</div>
+						<div class="line"></div>
+						<div class="step">
+							<div class="step-trigger">
+								<span class="bs-stepper-circle">3</span>
+								<span class="bs-stepper-label" th:text="#{bookings.chooseTravelguide}">CHOOSE_TRAVELGUIDE</span>
+							</div>
+						</div>
+						<div class="line"></div>
+						<div class="step">
+							<div class="step-trigger">
+								<span class="bs-stepper-circle">4</span>
+								<span class="bs-stepper-label" th:text="#{bookings.overview}">OVERVIEW</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="mb-5 p-4 bg-white shadow-sm">
+				<div class="row mt-4">
+					<div class="col-lg-4" style="border-right: 1px solid #eee;">
+						<form id="form" method="post" th:action="@{/bookings/create}" th:object="${customerForm}">
+							<div class="form-group">
+								<div class="form-group">
+									<label for="name" th:text="#{customers.name}">NAME</label>
+									<input id="name" th:name="name" th:value="${customerForm?.name}" type="text" class="form-control" required />
+								</div>
+							</div>
+							<button type="submit" class="btn btn-primary" th:text="#{buttons.search}">SEARCH</button>
+						</form>
+					</div>
+					<div class="col-lg-8">
+						<table class="table table-striped" id="customer-table" th:if="${customerList != null and !customerList.empty}">
+							<thead class="thead-dark">
+								<tr>
+									<th th:text="#{customers.name}">NAME</th>
+									<th th:text="#{customers.id}">CUSTOMER_ID</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="customer : ${customerList}" th:data-id="${customer.id}"  style="cursor: pointer">
+									<td th:text="${customer.name}">NAME</td>
+									<td th:text="${customer.id}">CUSTOMER_ID</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="h-100 d-flex justify-content-center align-items-center" th:if="${customerList != null and customerList.empty}">
+							<div class="card bg-light">
+								<div class="card-header" th:text="#{bookings.noMatches}">NO_MATCHES</div>
+								<div class="card-body">
+									<p class="card-text" th:text="#{bookings.noMatchingCustomers}">NO_MATCHING_CUSTOMERS</p>
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+			
+			<div class="mb-5 p-4 bg-white shadow-sm">
+				<form method="post" th:action="@{/bookings/create}" style="display: inline;">
+					<input id="customerId" name="customerId" type="hidden" value="-1" />
+					<button id="formButton" type="submit" class="btn btn-primary" th:text="#{buttons.continue}" disabled>CONTINUE</button>
+				</form>
+				<form method="post" th:action="@{/bookings/create/abort}" style="display: inline;">
+					<button id="backButton" type="submit" class="btn btn-secondary" th:text="#{buttons.abort}">ABORT</button>
+				</form>
+			</div>
+		</div>
+		
+		<script>
+			$("#customer-table tbody tr").click(function() {
+			   $(this).addClass('table-primary').siblings().removeClass('table-primary');
+			   document.getElementById('customerId').value = $(this).data('id');
+			   document.getElementById('formButton').disabled = false;
+			});
+		</script>
+		
+		<div th:include="footer :: footer"></div>
+	</body>
+</html>

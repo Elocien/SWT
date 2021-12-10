@@ -1,0 +1,24 @@
+= Tourable
+
+Diese Anwendung wurde im Rahmen des Softwaretechnologie-Praktikums entwickelt.
+
+== Quicklinks
+
+* link:src/main/asciidoc/pflichtenheft.adoc[Pflichtenheft]
+* link:src/main/asciidoc/developer_documentation.adoc[Entwicklerdoku]
+* link:src/main/asciidoc/test_plan.adoc[Testplan]
+* link:src/main/asciidoc/cross_testing_report_for_g34.adoc[Crosstesting]
+* link:src/main/asciidoc/cross_testing_results.adoc[Crosstesting Feedback]
+* link:src/main/asciidoc/time_recording.adoc[Time Recording]
+
+== Anwendungsstart
+
+`./mvnw spring-boot:run`
+
+== Team
+
+* Florian Richter (https://github.com/Rabrogo[@Rabrogo])
+* Leon Augustat (https://github.com/laugustat98[@laugustat98])
+* Lucian McIntyre (https://github.com/Elocien[@Elocien])
+* Pascal Juppe (https://github.com/pascaljuppe[@pascaljuppe])
+* Robert Thoß (https://github.com/Ai4dse[@Ai4dse])

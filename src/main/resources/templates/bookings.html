@@ -1,0 +1,76 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap-select.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />	
+		<title th:text="#{bookings}">TITLE</title>
+	</head>
+	<body class="bg-light">
+		<div th:include="navigation :: navigation"></div>
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="pb-2 mt-4 mb-2">
+						<h1 th:text="#{bookings}">TITLE</h1>
+					</div>
+					<form id="form" class="form-inline" method="post" th:action="@{/bookings/create}">
+						<button type="submit" class="btn btn-primary" th:text="#{bookings.create}">CREATE_BOOKING</button>
+					</form>
+					<form id="searchForm" class="form-inline float-left mb-2 mt-4" method="get" th:action="@{/bookings/details}">
+						<div class="input-group mr-sm-2">
+							<label for="id" th:text="#{bookings.id}">ID</label>
+							<input class="ml-1" id="id" type="number" step="1" min="0" name="id" required>
+							<button type="submit" class="btn btn-primary ml-1" th:text="#{buttons.search}">SEARCH</button>
+						</div>
+					</form>
+					<form id="filterForm" class="form-inline float-right mb-2 mt-4" method="get" th:action="@{/bookings/filter}">
+						<div class="input-group mr-sm-2">
+							<label for="status" th:text="#{bookings.status}">STATUS</label>
+							<select id="status" name="status" class="form-control selectpicker ml-1" th:title="#{buttons.nothingSelected}" data-live-search="true">
+								<option value=""></option>
+								<option th:each="status : ${T(tourable.booking.BookingStatus).values()}" th:value="${{status}}" th:text="#{'bookings.status.'+${{status}}}" />
+							</select>
+							<button type="submit" class="btn btn-primary ml-1" th:text="#{buttons.filter}">FILTER</button>
+						</div>
+						
+					</form>
+					<div class="mt-4">
+						<table class="table table-striped">
+							<thead class="thead-dark">
+								<tr>
+									<th th:text="#{bookings.status}">STATUS</th>
+									<th th:text="#{bookings.id}">ID</th>
+									<th th:text="#{bookings.timeOfBooking}">BOOKING_DATE</th>
+									<th th:text="#{customers.id}">CUSTOMER_ID</th>
+									<th th:text="#{bookings.accommodationInfos}">ACCOMMODATION_DETAILS</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="booking : ${bookingList}" style="cursor: pointer" th:onclick="'window.location.href = \'' + @{/bookings/details?id={id}(id=${booking.id})} + '\''">
+									<td th:if="${{booking.status}} == OPEN"><span class="badge badge-info" th:text="#{bookings.status.OPEN}" >STATUS_OPEN</span></td>
+									<td th:if="${{booking.status}} == PAID"><span class="badge badge-success" th:text="#{bookings.status.PAID}" >STATUS_PAID</span></td>
+									<td th:if="${{booking.status}} == CANCELLED"><span class="badge badge-warning" th:text="#{bookings.status.CANCELLED}" >STATUS_CANCELLED</span></td>
+									<td th:if="${{booking.status}} == UNPAID"><span class="badge badge-danger" th:text="#{bookings.status.UNPAID}" >STATUS_UNPAID</span></td>
+									<td th:text="${booking.id}">BOOKING_ID</td>
+									<td th:text="${#temporals.format(booking.timeOfBooking, 'dd.MM.yyyy HH:mm')}">BOOKING_DATE</td>
+									<td th:text="${booking.customer.id}">CUSTOMER_ID</td>
+									<td th:text="${booking.accommodation.city.name}+', '+${booking.accommodation.name}">ACCOMMODATION_DETAILS</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script th:src="@{/resources/js/vendor/bootstrap-select.min.js}"></script>
+		
+		<div th:include="footer :: footer"></div>
+	</body>
+</html>

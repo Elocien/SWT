@@ -1,0 +1,159 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />		
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />		
+		<title th:text="#{bookings.details}">TITLE</title>
+	</head>
+	<body class="bg-light">
+		<div th:include="navigation :: navigation"></div>
+		<div class="container">
+			<div class="modal" id="deleteModal">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header bg-danger">
+							<h4 class="modal-title" th:text="#{bookings.modal.deletion.title}">DELETION_TITLE</h4>
+							<button type="button" class="close" data-dismiss="modal">×</button>
+						</div>
+						<div class="modal-body">
+							<p th:text="#{bookings.modal.deletion.content}"></p>
+						</div>
+						<div class="modal-footer">
+						<form class="mr-auto col-sm-6" th:action="@{/bookings/delete}" method="post">
+							<input type="hidden" name="id" th:value="${booking.id}"/>
+							<input type="submit" class="btn btn-primary btn-block" th:value="#{buttons.confirm}" />
+						</form>
+						<button type="button" class="btn btn-secondary btn-block col-sm-6" th:text="#{buttons.abort}" data-dismiss="modal">ABORT</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal" id="cancelModal">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header bg-warning">
+							<h4 class="modal-title" th:text="#{bookings.modal.cancellation.title}">CANCELLATION_TITLE</h4>
+							<button type="button" class="close" data-dismiss="modal">×</button>
+						</div>
+						<div class="modal-body">
+							<p th:text="#{bookings.modal.cancellation.content}"></p>
+						</div>
+						<div class="modal-footer">
+							<form class="mr-auto col-sm-6" th:action="@{/bookings/cancel}" method="post">
+								<input type="hidden" name="id" th:value="${booking.id}"/>
+								<input type="submit" class="btn btn-primary btn-block" th:value="#{buttons.confirm}" />
+							</form>
+							<button type="button" class="btn btn-secondary btn-block col-sm-6" th:text="#{buttons.abort}" data-dismiss="modal">ABORT</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal" id="payModal">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header bg-success">
+							<h4 class="modal-title" th:text="#{bookings.modal.payment.title}">PAYMENT_TITLE</h4>
+							<button type="button" class="close" data-dismiss="modal">×</button>
+						</div>
+						<div class="modal-body">
+							<p th:text="#{bookings.modal.payment.content}"></p>
+						</div>
+						<div class="modal-footer">
+							<form class="mr-auto col-sm-6" th:action="@{/bookings/pay}" method="post">
+								<input type="hidden" name="id" th:value="${booking.id}"/>
+								<input type="submit" class="btn btn-primary btn-block" th:value="#{buttons.confirm}" />
+							</form>
+							<button type="button" class="btn btn-secondary btn-block col-sm-6" th:text="#{buttons.abort}" data-dismiss="modal">ABORT</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="pb-2 mt-4 mb-2">
+						<h1 th:text="#{bookings.details}">TITLE</h1>
+					</div>
+					<div class="row mt-4">
+						<div class="col-lg-6" style="border-right: 1px solid #eee;">
+							<dl class="row">
+								<dt class="col-sm-4" th:text="#{bookings.id}">ID</dt>
+								<dd class="col-sm-8" th:text="${booking.id}">VALUE</dd>
+								
+								<dt class="col-sm-4" th:text="#{bookings.timeOfBooking}">TIME_OF_BOOKING</dt>
+								<dd class="col-sm-8" th:text="${#temporals.format(booking.timeOfBooking, 'dd.MM.yyyy HH:mm')}">VALUE</dd>
+								
+								<dt class="col-sm-4" th:text="#{bookings.travelPeriod}">TRAVEL_PERIOD</dt>
+								<dd class="col-sm-8" th:text="${#temporals.format(booking.start, 'dd.MM.yyyy')} + ' - ' + ${#temporals.format(booking.end, 'dd.MM.yyyy')}">VALUE</dd>
+							</dl>
+							<hr>
+							<h4 class="pb-2" th:text="#{bookings.accommodation}">ACCOMMODATION</h4>
+							<dl class="row">
+								<dt class="col-sm-4" th:text="#{accommodations.name}">NAME</dt>
+								<dd class="col-sm-8" th:text="${booking.accommodation.name}">VALUE</dd>
+								
+								<dt class="col-sm-4" th:text="#{accommodations.city}">CITY</dt>
+								<dd class="col-sm-8" th:text="${booking.accommodation.city.name}">VALUE</dd>
+								
+								<dt class="col-sm-4" th:text="#{accommodations.type}">TYPE</dt>
+								<dd class="col-sm-8" th:text="#{'accommodations.type.'+${{booking.accommodation.type}}}">VALUE</dd>
+								
+								<dt class="col-sm-4" th:text="#{accommodations.location}">LOCATION</dt>
+								<dd class="col-sm-8" th:text="#{'accommodations.location.'+${{booking.accommodation.location}}}">VALUE</dd>
+							</dl>
+							<hr>
+							<h4 class="pb-2" th:text="#{bookings.customer}">CUSTOMER</h4>
+							<dl class="row">
+								<dt class="col-sm-4" th:text="#{customers.id}">ID</dt>
+								<dd class="col-sm-8" th:text="${booking.customer.id}">VALUE</dd>
+								
+								<dt class="col-sm-4" th:text="#{bookings.customer}">CUSTOMER</dt>
+								<dd class="col-sm-8" th:text="${booking.customer.name  != null} ? ${booking.customer.name} : ${bookings.deleted}">VALUE</dd>
+								
+								<dt class="col-sm-4" th:text="#{customers.email}">EMAIL</dt>
+								<dd class="col-sm-8" th:text="${booking.customer.name  != null} ? ${booking.customer.email} : ${bookings.deleted}">VALUE</dd>
+							</dl>
+							<hr>
+							<dl class="row">
+								<dt class="col-sm-4" th:text="#{bookings.status}">STATUS</dt>
+								<dd class="col-sm-8" th:if="${{booking.status}} == OPEN"><span class="badge badge-info" th:text="#{bookings.status.OPEN}" >STATUS_OPEN</span></dd>
+								<dd class="col-sm-8" th:if="${{booking.status}} == PAID"><span class="badge badge-success" th:text="#{bookings.status.PAID}" >STATUS_PAID</span></dd>
+								<dd class="col-sm-8" th:if="${{booking.status}} == CANCELLED"><span class="badge badge-warning" th:text="#{bookings.status.CANCELLED}" >STATUS_CANCELLED</span></dd>
+								<dd class="col-sm-8" th:if="${{booking.status}} == UNPAID"><span class="badge badge-danger" th:text="#{bookings.status.UNPAID}" >STATUS_UNPAID</span></dd>
+								
+								<dt class="col-sm-4" th:text="#{bookings.paymentMethod}">PAYMENT_METHOD</dt>
+								<dd class="col-sm-8" th:text="#{'bookings.paymentMethod.'+${{booking.paymentMethod}}}">VALUE</dd>
+								
+								<dt class="col-sm-4" th:text="#{bookings.price}">PRICE</dt>
+								<dd class="col-sm-8" th:text="|EUR ${#numbers.formatDecimal(booking.price, 1, 2, 'COMMA')}">VALUE</dd>
+							</dl>
+						</div>
+						<div class="col-lg-6">
+							<div class="card">
+								<img class="card-img-top" th:src="'data:image/jpeg;base64,' + ${image}" alt="accommodation image">
+								<div class="card-body">
+									<h5 class="card-title" th:text="${booking.accommodation.name}">TITLE</h5>
+									<p class="card-text" th:text="${booking.accommodation.description}">DESC</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="mt-4">
+						<button type="button" class="btn btn-success" data-toggle="modal" data-target="#payModal" th:text="#{bookings.modal.payment.button}" th:if="${payFlag} == true" >MARK_AS_PAID</button>
+						<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#cancelModal" th:text="#{bookings.modal.cancellation.button}" th:if="${cancelFlag} == true">CANCEL</button>
+						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" th:text="#{bookings.modal.deletion.button}" th:if="${deleteFlag} == true">DELETE</button>
+						<div class="float-right">
+							<a class="btn btn-info" th:href="@{/bookings/pdfreport?id={id}(id=${booking.id})}" th:text="#{bookings.pdfReport}">PDF_REPORT</a>
+							<a class="btn btn-secondary" th:href="@{/bookings}" th:text="#{buttons.back}">BACK</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div th:include="footer :: footer"></div>
+	</body>
+</html>

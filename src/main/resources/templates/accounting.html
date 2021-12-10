@@ -1,0 +1,119 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/daterangepicker.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />		
+		<title th:text="#{accounting}">TITLE</title>
+	</head>
+	<body class="bg-light">
+		<div th:include="navigation :: navigation"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="pb-2 mt-4 mb-2">
+						<h1 th:text="#{accounting}">TITLE</h1>
+					</div>
+					<ul class="nav nav-tabs" id="accountingTabs" role="tablist">
+						<li class="nav-item"><a class="nav-link active" id="dynamic-tab" data-toggle="tab" href="#dynamic" role="tab" aria-controls="dynamic" aria-selected="true" th:text="#{accounting.dynamicAccounting}">DYNAMIC</a></li>
+						<li class="nav-item"><a class="nav-link" id="annual-tab" data-toggle="tab" href="#annual" role="tab" aria-controls="annual" aria-selected="false" th:text="#{accounting.annualAccounting}">ANNUAL</a></li>
+						<li class="nav-item"><a class="nav-link" id="monthly-tab" data-toggle="tab" href="#monthly" role="tab" aria-controls="monthly" aria-selected="false" th:text="#{accounting.monthlyAccounting}">MONTHLY</a></li>
+						<li class="nav-item"><a class="nav-link" id="daily-tab" data-toggle="tab" href="#daily" role="tab" aria-controls="daily" aria-selected="false" th:text="#{accounting.dailyAccounting}">DAILY</a></li>
+					</ul>
+					<div class="tab-content" id="accountingTabContents">
+						<div class="tab-pane fade show active col-lg-4 mt-4" id="dynamic" role="tabpanel" aria-labelledby="dynamic-tab">
+							<h3 th:text="#{accounting.dynamicAccounting}">DYNAMIC</h3>
+							<form class="form inline" method="get" th:action="@{/accounting/dynamic/parse}">
+	                    		<div class="form-group">
+									<label for="dateRange" th:text="#{accounting.dynamicDateRange}">DATE_RANGE</label>
+									<input id="dateRange" name="dateRange" class="form-control" type="text" />
+								</div>
+	  							<button type="submit" class="btn btn-primary" th:text="#{buttons.show}">SHOW</button>
+	                   		</form>
+						</div>
+						<div class="tab-pane fade col-lg-12 mt-4" id="annual" role="tabpanel" aria-labelledby="annual-tab">
+							<h3 th:text="#{accounting.annualAccounting}">YEARLY</h3>
+							<table class="table table-striped mt-3">
+								<thead class="thead-dark">
+									<tr>
+										<th th:text="#{accounting.year}">YEAR</th>
+										<th th:text="#{accounting.totalRevenue}">TOTAL_REVENUE</th>
+										<th th:text="#{accounting.totalExpense}">TOTAL_EXPENSE</th>
+										<th th:text="#{accounting.totalProfits}">TOTAL_PROFITS</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="entry : ${yearEntries}" style="cursor: pointer" th:onclick="'window.location.href = \'' + @{/accounting/dynamic?from={from}&to={to}(from=${entry.from},to=${entry.to})} + '\''">
+										<td th:text="${entry.name}">YEAR</td>
+										<td th:text="|EUR ${#numbers.formatDecimal(entry.totalIncome, 1, 2, 'COMMA')}">TOTAL_REVENUE</td>
+										<td th:text="|EUR ${#numbers.formatDecimal(entry.totalExpense, 1, 2, 'COMMA')}">TOTAL_EXPENSE</td>
+										<td th:text="|EUR ${#numbers.formatDecimal(entry.totalProfit, 1, 2, 'COMMA')}">TOTAL_PROFITS</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="tab-pane fade col-lg-12 mt-4" id="monthly" role="tabpanel" aria-labelledby="monthly-tab">
+							<h3 th:text="#{accounting.monthlyAccounting}">MONTHLY</h3>
+							<table class="table table-striped mt-3">
+								<thead class="thead-dark">
+									<tr>
+										<th th:text="#{accounting.month}">MONTH</th>
+										<th th:text="#{accounting.totalRevenue}">TOTAL_REVENUE</th>
+										<th th:text="#{accounting.totalExpense}">TOTAL_EXPENSE</th>
+										<th th:text="#{accounting.totalProfits}">TOTAL_PROFITS</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="entry : ${monthEntries}" style="cursor: pointer" th:onclick="'window.location.href = \'' + @{/accounting/dynamic?from={from}&to={to}(from=${entry.from},to=${entry.to})} + '\''">
+										<td th:text="${entry.name}">2019</td>
+										<td th:text="|EUR ${#numbers.formatDecimal(entry.totalIncome, 1, 2, 'COMMA')}">TOTAL_REVENUE</td>
+										<td th:text="|EUR ${#numbers.formatDecimal(entry.totalExpense, 1, 2, 'COMMA')}">TOTAL_EXPENSE</td>
+										<td th:text="|EUR ${#numbers.formatDecimal(entry.totalProfit, 1, 2, 'COMMA')}">TOTAL_PROFITS</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="tab-pane fade col-lg-12 mt-4" id="daily" role="tabpanel" aria-labelledby="daily-tab">
+							<h3 th:text="#{accounting.dailyAccounting}">DAILY</h3>
+							<table class="table table-striped mt-3">
+								<thead class="thead-dark">
+									<tr>
+										<th th:text="#{accounting.day}">DAY</th>
+										<th th:text="#{accounting.totalRevenue}">TOTAL_REVENUE</th>
+										<th th:text="#{accounting.totalExpense}">TOTAL_EXPENSE</th>
+										<th th:text="#{accounting.totalProfits}">TOTAL_PROFITS</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="entry : ${dayEntries}" style="cursor: pointer" th:onclick="'window.location.href = \'' + @{/accounting/dynamic?from={from}&to={to}(from=${entry.from},to=${entry.to})} + '\''">
+										<td th:text="${entry.name}">2019</td>
+										<td th:text="|EUR ${#numbers.formatDecimal(entry.totalIncome, 1, 2, 'COMMA')}">TOTAL_REVENUE</td>
+										<td th:text="|EUR ${#numbers.formatDecimal(entry.totalExpense, 1, 2, 'COMMA')}">TOTAL_EXPENSE</td>
+										<td th:text="|EUR ${#numbers.formatDecimal(entry.totalProfit, 1, 2, 'COMMA')}">TOTAL_PROFITS</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script th:src="@{/resources/js/vendor/moment.min.js}"></script>
+		<script th:src="@{/resources/js/vendor/daterangepicker.min.js}"></script>
+		
+		<script>
+			$('input[name="dateRange"]').daterangepicker({
+				locale : {
+					format : 'YYYY-MM-DD'
+				}
+			});
+		</script>
+		
+		<div th:include="footer :: footer"></div>
+	</body>
+</html>

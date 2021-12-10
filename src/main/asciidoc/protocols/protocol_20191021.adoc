@@ -1,0 +1,53 @@
+= Protokoll Gruppe 35
+
+Treffen am 21.10.2019
+
+Ort:      Vor APB 2074 +
+Beginn:   14:50 Uhr +
+Ende:     15:15 Uhr 
+
+__Schriftführer:__
+Florian Richter +
+
+*Nächstes Treffen:* +
+28.10.2019, 14:50 Uhr, Vor APB 2074
+
+__Teilnehmer:__
+
+- Julian (Tutor)
+- Robert
+- Pascal
+- Yafei
+- Leon
+- Lucian
+- Florian
+
+== Bemerkungen
+- Pascal wird Teamleiter
+- Florian wird Protokollant
+- wöchentlich werden die Protokolle hochgeladen
+- Festlegung auf MagicDraw als UML-Editor
+- bisher hat keiner Erfahrungen mit Spring
+
+== Retrospektive des letzten Sprints
+* Beim videoshop aufsetzen gab es Probleme mit Javaversion.
+
+== Aktueller Stand
+* guestbook von allen bis auf Robert und Fe aufgesetzt und Erweiterung implementiert.
+** Robert und Yafei holen es nach und geben Feedback per Slack.
+
+
+== Planung des nächsten Sprints
+
+* Programmanalyse anfangen
+* CRC-Kartenmethode nutzen / testen
+* Anforderungen bestimmen
+** Fragenkatalog, erste Diagramme, grober Entwurf des UI für nächstes Treffen (Kundengespräch) erstellen
+** Pflichtenheft anlegen - videoshop-Pflichtenheft als Orientierung
+* Abgabe Deadline Sonntagabend 3. November 2019
+
+// -
+
+* videoshop:
+** Jeder implementiert ein Feature auf einem eigenen Branch, die Features können aus einer Liste ausgewählt werden
+** Abgabe Deadline Sonntagabend 3. November 2019

@@ -1,0 +1,54 @@
+= Protokoll Gruppe 35
+
+Treffen am 04.11.2019
+
+Ort:      Vor APB 2074 +
+Beginn:   15:00 Uhr +
+Ende:     15:45 Uhr 
+
+__Schriftführer:__ +
+Florian Richter +
+
+*Nächstes Treffen:* +
+11.11.2019, 14:50 Uhr, Vor APB 2074
+
+__Teilnehmer:__
+
+* Julian (Tutor)
+* Robert
+* Pascal (Teamleiter)
+* Leon
+* Lucian
+* Florian (Protokollant)
+
+== Bemerkungen
+* Yafei bekommt in Abwesenheit eine Verwarnung wegen nicht mitarbeiten und nicht anwesend sein zu Teamtreffen, wie auch zur (Nicht-) Beteiligung am Pflichtenheft und videoshop
+
+== Retrospektive des letzten Sprints
+* Videoshopaufgabenauswertung
+** Kritikpunkte bei Robert
+*** mehr direkt mit Cart arbeiten, nicht so umständlich
+*** Code übersichtlicher gestalten
+** Kritikpunkte bei Lucian
+*** Einfacher und übersichtlicher die Aufgabe asuführen (keine 15 Controllermethoden)
+* Pflichtenheft:
+** Sieht auf ersten Blick gut aus
+** Detailierte kleine Änderungsanforderungen kommen später diese Woche
+
+
+== Aktueller Stand
+* Im Zeitplan
+
+== Planung des nächsten Sprints
+* Abgabedatum von OOD und Prototyp ist 17.11.2019
+* OOD
+** Von Analyseklassendiagramm zu Entwurfsklassendiagramm umgestalten
+*** in kleinere Diagramme zerlegen
+*** Spring, Salespoint einbinden
+** Entwicklerdokumentation
+*** https://github.com/st-tu-dresden/videoshop/blob/master/src/main/asciidoc/developer_documentation.adoc[Developer Documentation von videoshop als Template]
+* Anwendungsprototyp
+** Projekt anfangen mit minimalen Funktionen
+** Einer setzt grobes Layout auf getrenntem Branch auf
+** bis nächste Woche wer was innerhalb des Prototyps macht
+* Für Robert und Lucian: nachbessern der videoshop Aufgaben

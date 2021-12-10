@@ -1,0 +1,52 @@
+= Protokoll Gruppe 35
+
+Treffen am 19.11.2019
+
+Ort:      Vor APB 2074 +
+Beginn:   13:45 Uhr +
+Ende:     14:20 Uhr 
+
+__Schriftführer:__
+Florian Richter +
+
+*Nächstes Treffen:* +
+25.11.2019, 14:50 Uhr, Vor APB 2074
+
+__Teilnehmer:__
+
+* Julian (Tutor)
+* Pascal (Teamleiter)
+* Leon
+* Florian (Protokollant)
+
+== Bemerkungen
+* immer mal wieder was in den masterbranch pushen für Sonar Qube
+* dürfen Prototypen weiterverwenden
+
+== Retrospektive des letzten Sprints
+* Developer Documentation
+** ist gut
+** detailiertes Feedback folgt im Laufe der Woche
+* Prototype
+** jeder implementierte sein Package
+*** Travelguide: Pascal
+*** User: Robert
+*** Customer: Leon
+*** Accommodation: Lucian
+*** Accounting: Florian
+*** Booking: für Prototype: Pascal / Florian
+** gut gelungen
+** Anregung: Städte als Entity anlegen
+
+== Aktueller Stand
+* aktueller Stand ist gut
+
+== Planung des nächsten Sprints
+* nächster Milestone:
+** 1.12.2019
+** Basisfunktionalität
+*** dehnbarer Begriff also einfach weitermachen
+** Zwischenpräsentation
+*** 20 Minuten Präsentation
+*** genaueres später per Mail
+*** Termin 2.12.2019 16:30 ?

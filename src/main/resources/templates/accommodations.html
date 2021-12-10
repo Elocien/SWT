@@ -1,0 +1,77 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap-select.min.css}" />		
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+		<title th:text="#{accommodations}">TITLE</title>
+	</head>
+	<body class="bg-light">
+		<div th:include="navigation :: navigation"></div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="pb-2 mt-4 mb-2">
+						<h1 th:text="#{accommodations}">TITLE</h1>
+					</div>
+					<a class="btn btn-primary" sec:authorize="hasRole('BOSS')" th:href="@{/accommodations/create}" th:text="#{accommodations.create}">CREATE_ACCOMMODATION</a>
+					<form id="form" class="form-inline float-right" method="get" th:action="@{/accommodations/filter}" th:object="${form}">
+						<div class="input-group mr-sm-2">
+							<label for="type" th:text="#{accommodations.city}">CITY</label>
+							<select id="city" th:field="*{city}" class="form-control selectpicker" th:title="#{buttons.nothingSelected}" data-live-search="true">
+								<option value=""></option>
+								<option th:each="city : ${cityList}" th:value="${city.name}" th:text="${city.name}"/>
+							</select>
+						</div>
+						<div class="input-group mr-sm-2">
+							<label for="type" th:text="#{accommodations.type}">CITY</label>
+							<select id="type" th:field="*{type}" class="form-control selectpicker" th:title="#{buttons.nothingSelected}" data-live-search="true">
+								<option value=""></option>
+								<option th:each="type : ${T(tourable.accommodation.AccommodationType).values()}" th:value="${{type}}" th:text="#{'accommodations.type.'+${{type}}}" />
+							</select>
+						</div>
+						<div class="input-group mr-sm-2">
+							<label for="location" th:text="#{accommodations.location}">CITY</label>
+							<select id="location" th:field="*{location}" class="form-control selectpicker" th:title="#{buttons.nothingSelected}" data-live-search="true">
+								<option value=""></option>
+								<option th:each="location : ${T(tourable.accommodation.AccommodationLocation).values()}" th:value="${{location}}" th:text="#{'accommodations.location.'+${{location}}}"/>
+							</select>
+						</div>
+						<button type="submit" class="btn btn-primary" th:text="#{buttons.filter}">FILTER</button>
+					</form>
+					<div class="mt-4"> 
+						<table class="table table-striped">
+							<thead class="thead-dark">
+								<tr>
+									<th th:text="#{accommodations.name}">NAME</th>
+									<th th:text="#{accommodations.price}">PRICE</th>
+									<th th:text="#{accommodations.city}">CITY</th>
+									<th th:text="#{accommodations.type}">TYPE</th>
+									<th th:text="#{accommodations.location}">LOCATION</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="accommodation : ${accommodationList}" style="cursor: pointer" th:onclick="'window.location.href = \'' + @{/accommodations/details?id={id}(id=${accommodation.id})} + '\''">
+									<td th:text="${accommodation.name}">NAME</td>
+									<td th:text="|EUR ${#numbers.formatDecimal(accommodation.price, 1, 2, 'COMMA')}">PRICE</td>
+									<td th:text="${accommodation.city.name}">CITY></td>
+									<td th:text="#{'accommodations.type.'+${{accommodation.type}}}">TYPE></td>
+									<td th:text="#{'accommodations.location.'+${{accommodation.location}}}">LOCATION></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script th:src="@{/resources/js/vendor/bootstrap-select.min.js}"></script>
+		
+		<div th:include="footer :: footer"></div>      	
+    </body>
+</html>

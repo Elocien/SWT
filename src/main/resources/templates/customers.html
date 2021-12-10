@@ -1,0 +1,58 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />		
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+		<title th:text="#{customers}">TITLE</title>
+	</head>
+	<body class="bg-light">
+		<div th:include="navigation :: navigation"></div>
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="pb-2 mt-4 mb-2">
+						<h1 th:text="#{customers}">TITLE</h1>
+					</div>
+					<form id="form" class="form-inline" method="get" th:action="@{/customers/create}">
+						<button type="submit" class="btn btn-primary" th:text="#{customers.create}">CREATE_CUSTOMER</button>
+					</form>
+					<form id="searchForm" class="form-inline float-left mb-2 mt-4" method="get" th:action="@{/customers/details}">
+						<div class="input-group mr-sm-2">
+							<label for="id" th:text="#{customers.id}">ID</label>
+							<input class="ml-1" id="id" type="number" step="1" min="0" name="id" required>
+							<button type="submit" class="btn btn-primary ml-1" th:text="#{buttons.search}">SEARCH</button>
+						</div>
+					</form>
+					<div class="mt-4">
+						<table class="table table-striped">
+							<thead class="thead-dark">
+								<tr>
+									<th th:text="#{customers.id}">ID</th>
+									<th th:text="#{customers.name}">NAME</th>
+									<th th:text="#{customers.address}">ADDRESS</th>
+									<th th:text="#{customers.email}">MAIL</th>
+									<th th:text="#{customers.phone}">PHONE</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="customer : ${customerList}" style="cursor: pointer" th:onclick="'window.location.href = \'' + @{/customers/details?id={id}(id=${customer.id})} + '\''">
+									<td th:text="${customer.id}">ID</td>
+									<td th:text="${customer.name}">NAME</td>
+									<td th:text="${customer.address}">ADDRESS</td>
+									<td th:text="${customer.email}">EMAIL</td>
+									<td th:text="${customer.phone}">PHONE</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div th:include="footer :: footer"></div>
+	</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/vendor/bootstrap.min.css}" />		
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />		
+		<title th:text="#{users.details}">TITLE</title>
+	</head>
+	<body class="bg-light">
+		<div th:include="navigation :: navigation"></div>
+		
+		<div class="container">
+			<div class="modal" id="deleteModal">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header bg-danger">
+							<h4 class="modal-title" th:text="#{users.modal.deletion.title}">DELETION_TITLE</h4>
+							<button type="button" class="close" data-dismiss="modal">×</button>
+						</div>
+						<div class="modal-body">
+							<p th:text="#{users.modal.deletion.content}"></p>
+						</div>
+						<div class="modal-footer">
+							<form class="mr-auto col-sm-6" th:action="@{/users/delete}" method="get">
+								<input type="hidden" name="id" th:value="${user.id}" />
+								<input type="submit" class="btn btn-primary btn-block" th:value="#{buttons.confirm}" />
+							</form>
+							<button type="button" class="btn btn-secondary btn-block col-sm-6" th:text="#{buttons.abort}" data-dismiss="modal">ABORT</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="pb-2 mt-4 mb-2">
+						<h1 th:text="#{users.details}">TITLE</h1>
+					</div>
+					<div class="mt-4">
+						<dl class="row">
+							<dt class="col-sm-2" th:text="#{users.firstname}">FIRSTNAME</dt>
+							<dd class="col-sm-10" th:text="${user.firstname}">VALUE</dd>
+							
+							<dt class="col-sm-2" th:text="#{users.lastname}">LASTNAME</dt>
+							<dd class="col-sm-10" th:text="${user.lastname}">VALUE</dd>
+							
+							<dt class="col-sm-2" th:text="#{users.address}">ADDRESS</dt>
+							<dd class="col-sm-10" th:text="${user.address}">VALUE</dd>
+							
+							<dt class="col-sm-2" th:text="#{users.email}">EMAIL</dt>
+							<dd class="col-sm-10" th:text="${user.userAccount.id}">VALUE</dd>
+							
+							<dt class="col-sm-2" th:text="#{users.phone}">PHONE</dt>
+							<dd class="col-sm-10" th:text="${user.phone}">VALUE</dd>
+							
+							<dt class="col-sm-2" th:text="#{users.salary}">SALARY</dt>
+							<dd class="col-sm-10" th:text="|EUR ${#numbers.formatDecimal(user.salary, 1, 2, 'COMMA')}">VALUE</dd>
+						</dl>
+					</div>
+					<div class="mt-4">
+						<a class="btn btn-primary" th:href="@{/users/edit?id={id}(id=${user.id})}" th:text="#{buttons.edit}">EDIT</a>
+						<a class="btn btn-secondary" th:href="@{/users}" th:text="#{buttons.back}">BACK</a>
+						<button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#deleteModal" th:text="#{buttons.delete}">DELETE</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div th:include="footer :: footer"></div>
+	
+	</body>
+</html>
